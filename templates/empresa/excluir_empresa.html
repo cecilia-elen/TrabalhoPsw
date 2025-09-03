@@ -1,0 +1,30 @@
+{% extends 'componentes/interno/base.html' %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="col-md-8 grid-margin stretch-card mx-auto">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">Confirmar Exclusão</h4>
+                <p>Você tem certeza que deseja excluir a empresa permanentemente?</p>
+                <h5 class="text-danger font-weight-bold">"{{ empresa.nome_loja }}"</h5>
+                <p class="card-description mt-3">
+                    Atenção: Esta ação não pode ser desfeita e excluirá todos os catálogos e produtos associados.
+                </p>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-danger mr-2">Sim, Excluir</button>
+                        {% if perms.empresa.view_empresa %} <!-- Se a pessoa tiver permissao, aparece um redirecionamento pro adm, senao, vai o normal mesmo-->
+        <a href="{% url 'empresa:listar_empresas' %}" class="btn btn-dark">Cancelar</a>
+    {% else %}
+        <a href="{% url 'empresa:gerenciar_empresa' %}" class="btn btn-dark">Cancelar</a>
+    {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

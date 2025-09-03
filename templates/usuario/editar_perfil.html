@@ -1,0 +1,136 @@
+{% extends 'componentes/interno/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="col-12 grid-margin">
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+             {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for error in form.non_field_errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">Personalização e Redes de contato</h2>
+                    <div class="form-group">
+
+    <div class="row align-items-center">
+        <div class="col-md-8">
+                                <label class="font-weight-bold d-block mb-3">Foto de perfil</label>
+
+                                <button type="button" id="custom-upload-button" class="btn btn-primary">Alterar Foto</button>
+
+                                <div style="display: none;">
+                                    {{ form.foto_perfil }}
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                                {% if user.foto_perfil %}
+                                    <img id="imagem-preview" src="{{ user.foto_perfil.url }}" alt="Prévia da foto de perfil">
+                                {% else %}
+                                    <img id="imagem-preview" src="#" alt="Prévia da foto de perfil" style="display: none;">
+                                    <i id="icon-placeholder" class="mdi mdi-camera-off" style="font-size: 80px; color: #444;"></i>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {{ form.sobre|as_crispy_field }}
+
+                    <hr>
+                    <h5 class="mt-4">Telefone e Links das Redes Sociais</h5>
+                    <p class="card-description">Lembre-se: você precisa preencher pelo menos uma forma de contato.</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">{{ form.Telefone|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.Whatsapp|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.Telegram|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.Instagram|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.Facebook|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.X|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.Tiktok|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.Kwai|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.Youtube|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.LinkedIn|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.Github|as_crispy_field }}</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Endereço</h2>
+                    <p class="card-description">Onde seus clientes podem te encontrar fisicamente?</p>
+
+                    <div class="row">
+                        <div class="col-md-6">{{ form.estado|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.cidade|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.bairro|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.logradouro|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.numero|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.detalhamento|as_crispy_field }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary mr-2">Salvar Alterações</button>
+                <a href="{% url 'usuario:perfil' %}" class="btn btn-dark">Cancelar</a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<!-- css da imagem de prévia -->
+<style>
+    #imagem-preview {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #444;
+        background-color: #2A3038;
+    }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos necessários paara a parte de atualização da imagem
+    const realFileInput = document.getElementById('id_foto_perfil');
+    const customUploadButton = document.getElementById('custom-upload-button');
+    const imagePreview = document.getElementById('imagem-preview');
+    const iconPlaceholder = document.getElementById('icon-placeholder');
+    
+    // Se os elementos existirem...
+    if(realFileInput && customUploadButton) {
+        // faz o botão do bootstrap acionar o campo de upload escondido
+        customUploadButton.addEventListener('click', function() {
+            realFileInput.click();
+        });
+
+        // atualiza a pré-visualização ao vivo
+        realFileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                    if (iconPlaceholder) iconPlaceholder.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

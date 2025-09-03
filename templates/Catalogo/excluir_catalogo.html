@@ -1,0 +1,31 @@
+{% extends 'componentes/interno/base.html' %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="col-md-8 grid-margin stretch-card mx-auto">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">Confirmar Exclusão de Catálogo</h4>
+                <p>Você tem certeza que deseja excluir o catálogo permanentemente?</p>
+                <h5 class="text-danger font-weight-bold">"{{ catalogo.título }}"</h5>
+                <p class="card-description mt-3">
+                    Atenção: Esta ação não pode ser desfeita. Todos os produtos continuarão existindo no sistema, mas a ligação deles com este catálogo será perdida.
+                </p>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-danger mr-2">Sim, Excluir</button>
+                        
+                        {% if perms.catalogo.view_catalogo %} <!-- Se a pessoa tiver permissao, aparece um redirecionamento pro adm, senao, vai o normal mesmo-->
+        <a href="{% url 'catalogo:listar_catalogos' %}" class="btn btn-dark">Cancelar</a>
+    {% else %}
+        <a href="{% url 'catalogo:visualizar_catalogos' %}" class="btn btn-dark">Cancelar</a>
+    {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

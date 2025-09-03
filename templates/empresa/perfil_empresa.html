@@ -1,0 +1,102 @@
+{% extends 'componentes/interno/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">{{ empresa.nome_loja }}</h3>
+                    <p class="card-description">Ramo: {{ empresa.ramo }}</p>
+                    <a href="{% url 'empresa:alterar_empresa' empresa.pk %}" class="btn btn-outline-primary btn-sm">Editar Dados da Empresa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Informações</h4>
+                    <p><strong>CNPJ:</strong> {{ empresa.cnpj|default:"Não informado" }}</p>
+
+                    <h4 class="card-title mt-4">Localização</h4>
+                    <p> {{ empresa.cidade_display }} - {{ empresa.estado_display  }}: {{ empresa.bairro_display  }}, {{ empresa.logradouro }}, {{ empresa.numero }}.</p>
+                    <p>{% if empresa.detalhamento_display  %}</p>{% endif %}
+
+                    <hr>
+
+                    <h4 class="card-title mt-4">Responsável</h4>
+                    <p>
+                        Esta empresa é gerenciada por 
+                        <a href="{% url 'usuario:perfil' %}"> <strong>{{ empresa.usuario.get_full_name }}</strong>
+                        </a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <h3 class="mb-4">Catálogos de {{ empresa.nome_loja }}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 grid-margin stretch-card">
+            <a href="{% url 'catalogo:criar_catalogo' %}" class="card-link text-decoration-none">
+                <div class="card card-slot">
+                    <div class="card-body text-center d-flex flex-column justify-content-center">
+                        <i class="mdi mdi-plus-circle-outline mdi-48px text-primary"></i>
+                        <h4 class="mt-3">Criar Novo Catálogo</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {% for catalogo in catalogos %}
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card card-clicavel">
+                <a href="{% url 'catalogo:detalhe_catalogo' catalogo.pk %}">
+                    {% if catalogo.thumbnail %}
+                    <img class="card-img-top" src="{{ catalogo.thumbnail.url }}" alt="{{ catalogo.título }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="d-flex justify-content-center align-items-center" style="height: 200px; background-color: #2c3038;">
+                        <i class="mdi mdi-image-area" style="font-size: 60px; color: #6c757d;"></i>
+                    </div>
+                    {% endif %}
+                </a>
+                
+                <div class="card-body">
+                    <h5 class="card-title text-white">{{ catalogo.título }}</h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    /* Estilo para o card de "Criar Novo" */
+    .card-slot {
+        border: 2px dashed #444;
+        transition: all 0.2s ease-in-out;
+        height: 100%;
+    }
+    .card-slot:hover {
+        border-color: #007bff;
+        background-color: #2a3038;
+    }
+
+    /* Estilos para o efeito hover no card (mantido) */
+    .card-clicavel {
+        transition: all 0.3s ease;
+    }
+    .card-clicavel:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+</style>
+{% endblock %}
