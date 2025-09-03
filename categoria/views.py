@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import Categoria
@@ -63,3 +64,8 @@ def excluir_categoria(request, pk):
         'categoria': categoria
     }
     return render(request, 'categoria/excluir_categoria_confirmar.html', context)
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d

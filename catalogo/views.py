@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
@@ -180,3 +181,8 @@ def excluir_catalogo(request, pk):
     # No o primeiro acesso (GET), apenas mostra a página de confirmação
     contexto = {'catalogo': catalogo}
     return render(request, 'catalogo/excluir_catalogo.html', contexto)
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d

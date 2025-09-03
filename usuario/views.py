@@ -1,4 +1,5 @@
 from django.urls import reverse
+<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages #para essa parte de avisos de sucesso ou erro e tals
@@ -16,12 +17,29 @@ def cadastro(request):
             login(request, usuario)
             # Redireciona o novo usuário para completar o perfil!
             return redirect(reverse('usuario:perfil'))
+=======
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .forms import UsuarioForm, LoginForm
+
+def cadastro(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            # Se estiver tudo certo com o formulário, ele vai salvar e vai fazer login
+            usuario = form.save()
+            login(request, usuario)
+             # Redirecionamento para página inicial
+            return redirect(reverse('pagina-inicial')) 
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
     else:
         form = UsuarioForm()
 
     context = {'form': form}
     return render(request, 'usuario/cadastro.html', context)
 
+<<<<<<< HEAD
 
 
 
@@ -51,6 +69,8 @@ def editar_perfil(request):
 
 
 
+=======
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
 def login_user(request):
      # Se o usuário já está logado, redireciona para a página inicial
     if request.user.is_authenticated:
@@ -70,25 +90,32 @@ def login_user(request):
 
     return render(request, 'usuario/login.html', context)
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
 def logout_user(request):
     logout(request)
 
     return redirect(reverse('pagina-inicial'))
  #Desloga o usuário e o redireciona para a página inicial.
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
 @login_required
 def perfil(request):
     """Renderiza a página de perfil do usuário logado."""
     # Rodar o Perfil do usuário com suas informações basiconas
+<<<<<<< HEAD
     return render(request, 'usuario/perfil.html')
 
 
@@ -204,3 +231,6 @@ def criar_usuario_admin(request):
 
     return render(request, 'usuario/criar_usuario_admin.html', {'form': form})
     
+=======
+    return render(request, 'usuario/perfil.html')
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d

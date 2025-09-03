@@ -41,10 +41,18 @@ INSTALLED_APPS = [
     'categoria',
     'catalogo',
     'usuario',
+<<<<<<< HEAD
     'empresa',
     'crispy_forms',
     'crispy_bootstrap5',
     'widget_tweaks',
+=======
+    'perfil',
+    'like',
+    'dashboard',
+    'crispy_forms',
+    'crispy_bootstrap5',
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
 ]
 
 MIDDLEWARE = [
@@ -124,7 +132,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+<<<<<<< HEAD
 #caminhos que configuram onde estão meus bootstraps
+=======
+
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
@@ -135,6 +147,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Para o Django usar o modelo padrão "personalizado" de usuário que eu fiz
 AUTH_USER_MODEL = 'usuario.Usuario'
+<<<<<<< HEAD
 # Para eu conseguir usar formulários personalizados do bootstrap e os dados que eu defini no models.py
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -142,3 +155,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 MEDIA_URL = '/uploads/'
 # Pasta na raiz do projeto onde os arquivos de upload serão salvos
 MEDIA_ROOT = BASE_DIR / 'uploads'
+=======
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
