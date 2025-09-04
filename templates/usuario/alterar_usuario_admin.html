@@ -1,0 +1,31 @@
+{% extends 'componentes/interno/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="card col-lg-8 mx-auto">
+        <div class="card-body px-5 py-5">
+            <h3 class="card-title text-left mb-3">Alterar Usuário: {{ usuario_alvo.username }}</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6 px-2">
+                        {{ form.first_name|as_crispy_field }}
+                        {{ form.email|as_crispy_field }}
+                        {{ form.senha|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 px-2">
+                        {{ form.last_name|as_crispy_field }}
+                        {{ form.cpf|as_crispy_field }}
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary btn-block enter-btn">Salvar Alterações</button>
+                    <a href="{% url 'usuario:listar_usuarios' %}" class="btn btn-dark btn-block">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
