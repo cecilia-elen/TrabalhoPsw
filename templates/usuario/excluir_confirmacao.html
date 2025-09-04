@@ -1,0 +1,34 @@
+{% extends 'componentes/interno/base.html' %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-8 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-danger">Confirmar Exclusão de Conta</h4>
+                    <p class="card-description">
+                        Você tem certeza de que deseja excluir a conta permanentemente?
+                    </p>
+                    <p>
+                        <strong>Atenção:</strong> Todas as informações, incluindo empresas e catálogos associados, serão perdidas. 
+                        Esta ação não pode ser desfeita.
+                    </p>
+                    
+                    <form method="post" class="mt-4">
+                        {% csrf_token %}
+                        
+                        <button type="submit" class="btn btn-danger mr-2">Sim, tenho certeza, excluir minha conta</button>
+                        
+                       {% if perms.usuario.view_usuario %} <!-- Se a pessoa tiver permissao, aparece um redirecionamento pro adm, senao, vai o normal mesmo-->
+        <a href="{% url 'usuario:listar_usuarios' %}" class="btn btn-dark">Cancelar</a>
+    {% else %}
+        <a href="{% url 'usuario:perfil' %}" class="btn btn-dark">Cancelar</a>
+    {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

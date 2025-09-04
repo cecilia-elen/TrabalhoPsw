@@ -1,0 +1,54 @@
+{% extends 'componentes/interno/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="col-md-8 grid-margin stretch-card mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Dados da Empresa</h4>
+                <p class="card-description">Preencha as informações do seu negócio.</p>
+                
+                <form class="forms-sample" method="POST">
+                    {% csrf_token %}
+
+                    <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Informações principais</h2>
+                    <p class="card-description"> (se for um negócio informal, não precisa de cnpj)</p>
+
+                    <div class="row">
+                        <div class="col-md-6">{{ form.nome_loja|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.ramo|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.cnpj|as_crispy_field }}</div>
+                    </div>
+                </div>
+            </div>
+
+                    
+                    <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Endereço</h2>
+                    <p class="card-description">Onde está o seu negócio? <br>(se for em sua residência, não precisa preencher. Caso contrário, preencha totalmente)</p>
+
+                    <div class="row">
+                        <div class="col-md-6">{{ form.estado|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.cidade|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.bairro|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.logradouro|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.numero|as_crispy_field }}</div>
+                        <div class="col-md-6">{{ form.detalhamento|as_crispy_field }}</div>
+                    </div>
+                </div>
+            </div>
+
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary mr-2">Salvar Dados</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'componentes/interno/base.html' %}
+{% load static %}
+
+{% block content %}
+           <div class="content-wrapper">
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body" style="position: relative;">
+                    <div style="position: absolute; right: 20px;">
+                        {% if user.foto_perfil %}
+                            <img src="{{ user.foto_perfil.url }}" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+                        {% else %}
+                            <i class="mdi mdi-account-circle" style="font-size: 100px;"></i>
+                        {% endif %}
+                    </div>
+                    <h3 class="card-title">
+                        {{ user.get_full_name }}
+                    </h3>
+                    <!-- Empresas cadastradas, elas vão aparecer no perfil do usuário e vai ter redirecionamento para a página da empresa -->
+                    {% if user.empresas.all %}  <h4 class="card-title mt-4">Empresas Associadas</h4>
+                    <ul class="list-arrow">
+                        {% for empresa in user.empresas.all %}
+                        <span>
+                            <a href="{% url 'empresa:perfil_empresa' empresa.pk %}" class="mr-3"> <strong>{{ empresa.nome_loja }}</strong>
+                                </a>
+                                    </span>
+                            {% endfor %}
+                                </ul>
+                                {% endif %}
+                    <p class="card-description">Membro desde: {{ user.date_joined|date:"d/m/Y" }}</p>
+                      <a href="{% url 'usuario:editar_perfil' %}" class="btn btn-outline-primary btn-sm">Editar Perfil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    {% if user.perfil_completo %} 
+                    <!-- basicamente toda a lógica de css e html para aparecer as informações do usuario -->
+    <h4 class="card-title">Sobre Mim</h4>
+    <p>{{ user.sobre|default:"Nenhuma informação preenchida." }}</p>
+
+    <h4 class="card-title mt-4">Contato</h4>
+    
+    {% if user.Telefone %}
+        <p class="d-flex align-items-center">
+            <i class="mdi mdi-phone mr-2"></i> {{ user.Telefone }}
+        </p>
+    {% endif %}
+
+    <div class="d-flex align-items-center flex-wrap">
+        {% if user.Instagram %} <a href="{{ user.Instagram }}" target="_blank" class="text-secondary mr-3 mb-2"><i class="mdi mdi-instagram" style="font-size: 24px;"></i></a> {% endif %}
+        {% if user.Facebook %} <a href="{{ user.Facebook }}" target="_blank" class="text-secondary mr-3 mb-2"><i class="mdi mdi-facebook" style="font-size: 24px;"></i></a> {% endif %}
+        {% if user.X %} <a href="{{ user.X }}" target="_blank" class="text-secondary mr-3 mb-2"><i class="mdi mdi-twitter" style="font-size: 24px;"></i></a> {% endif %}
+        {% if user.Youtube %} <a href="{{ user.Youtube }}" target="_blank" class="text-secondary mr-3 mb-2"><i class="mdi mdi-youtube" style="font-size: 24px;"></i></a> {% endif %}
+        {% if user.Github %} <a href="{{ user.Github }}" target="_blank" class="text-secondary mr-3 mb-2"><i class="mdi mdi-github-circle" style="font-size: 24px;"></i></a> {% endif %}
+        {% if user.LinkedIn %} <a href="{{ user.LinkedIn }}" target="_blank" class="text-secondary mr-3 mb-2"><i class="mdi mdi-linkedin" style="font-size: 24px;"></i></a> {% endif %}
+        {% if user.Kwai %} <a href="{{ user.Kwai }}" target="_blank" class="text-secondary mr-3 mb-2"><strong>Kwai</strong></a> {% endif %} {% if user.Tiktok %} <a href="{{ user.Tiktok }}" target="_blank" class="text-secondary mr-3 mb-2"><i class="mdi mdi-tiktok" style="font-size: 24px;"></i></a> {% endif %}
+        {% if user.Telegram %} <a href="{{ user.Telegram }}" target="_blank" class="text-secondary mr-3 mb-2"><i class="mdi mdi-telegram" style="font-size: 24px;"></i></a> {% endif %}
+        {% if user.Whatsapp %} <a href="{{ user.Whatsapp }}" target="_blank" class="text-secondary mr-3 mb-2"><i class="mdi mdi-whatsapp" style="font-size: 24px;"></i></a> {% endif %}
+    </div>
+
+    <h4 class="card-title mt-4">Localização</h4>
+    <p> {{ user.cidade }} - {{ user.estado }}: {{ user.bairro }}, {{ user.logradouro }}, {{ user.numero }}.</p>
+    {% if user.detalhamento %}<p><em>{{ user.detalhamento }}</em></p>{% endif %}
+
+{% else %}
+    <div class="text-center">
+        <h4 class="card-title">Seu perfil está incompleto!</h4>
+        <p class="card-description">Complete seu perfil e crie uma empresa na área "Empresas" para usufruir das funcionalidades do site!.</p>
+        <a href="{% url 'usuario:editar_perfil' %}" class="btn btn-primary mt-3">Completar Perfil Agora</a>
+    </div>
+{% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+          {% endblock %}
+
+
+
+

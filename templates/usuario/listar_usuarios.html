@@ -1,0 +1,44 @@
+{% extends 'componentes/interno/base.html' %}
+
+{% block content %}
+<div class="content-wrapper">
+<div class="row justify-content-center"> 
+<div class="col-lg-10 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Gerenciamento de Usuários</h4>
+      <p class="card-description">Lista de todos os usuários do sistema.</p>
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              
+              <th>Nome Completo</th>
+              <th>Email</th>
+              <th>CPF</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for usuario_alvo in usuarios %}
+            <tr>
+              <td>{{ usuario_alvo.get_full_name }}</td>
+              <td>{{ usuario_alvo.email }}</td>
+              <td>{{ usuario_alvo.CPF}}</td>
+              <td>
+                <a href="{% url 'usuario:alterar_usuario_admin' usuario_alvo.pk %}" class="btn btn-warning btn-sm">Alterar</a>
+                <a href="{% url 'usuario:excluir_confirmacao' usuario_alvo.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+              </td>
+            </tr>
+            {% endfor %}
+            <a href= "{% url 'usuario:criar_usuario_admin' %}" class="btn btn-primary">Criar</a>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}
