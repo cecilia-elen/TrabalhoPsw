@@ -1,4 +1,8 @@
 from django.db import models
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
 from empresa.models import Empresa
 from categoria.models import Categoria
 
@@ -21,4 +25,12 @@ class Catalogo(models.Model):
     class Meta:
         # Garante que não exista outro catálogo com o mesmo título para a mesma empresa
         unique_together = ('empresa', 'título')
+<<<<<<< HEAD
         verbose_name_plural = "Catálogos"
+=======
+        verbose_name_plural = "Catálogos"
+=======
+
+# Create your models here.
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220

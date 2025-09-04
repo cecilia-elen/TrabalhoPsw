@@ -2,6 +2,10 @@ from django import forms
 from .models import Usuario
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
        # Placeholders para ajudar o usuário (no formulário de cadastro)
 class UsuarioForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
@@ -19,12 +23,27 @@ class UsuarioForm(UserCreationForm):
         fields = ('first_name', 'last_name', 'email', 'cpf')
 
     # --- Para que o nome do usuário seja colocado ao criar o perfil
+<<<<<<< HEAD
+=======
+=======
+class UsuarioForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Usuario
+        fields = ('first_name', 'last_name', 'email', 'cpf')
+
+    # --- Para que o nome do usuário seja colocado ao criar o perfil ---
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
     def save(self, commit=True):
         # Pega o objeto do usuário criado pelo formulário, mas não salva no banco ainda.
         user = super().save(commit=False)
         # Define o username para ser igual ao email.
         user.username = user.email
         if commit:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
             # Agora salva o usuário no banco de dados com o nome preenchido.
             user.save()
         return user
@@ -96,4 +115,16 @@ class UsuarioUpdateForm(forms.ModelForm):
                 code='sem_contatos_sociais'
             )
             
+<<<<<<< HEAD
         return cleaned_data
+=======
+        return cleaned_data
+=======
+            # Agora salva o usuário no banco de dados com o username preenchido.
+            user.save()
+        return user
+
+class LoginForm(AuthenticationForm):
+    pass
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220

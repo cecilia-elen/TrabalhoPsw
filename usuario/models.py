@@ -1,4 +1,8 @@
 from django.db import models
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
 from django.contrib.auth.models import AbstractUser, BaseUserManager #É pra que o super user funcione direito, porque o email vira o username na minha costumizaçao de user do django 
 from django.core.validators import MinValueValidator, MaxValueValidator #valor mínimo e máximo de inteiros para o número das casas
 from django.db.models.signals import post_save
@@ -31,10 +35,23 @@ class UserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
     
 class Usuario(AbstractUser):
+<<<<<<< HEAD
+=======
+=======
+from django.contrib.auth.models import AbstractUser
+
+class Usuario(AbstractUser):
+
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
     email = models.EmailField(unique=True)
      # Diz ao Django que o campo de login agora é o 'email'
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
 
     objects = UserManager()
     cpf = models.CharField(max_length=14,unique=True,verbose_name='CPF',help_text='Informe o CPF no formato 000.000.000-00')
@@ -61,6 +78,12 @@ class Usuario(AbstractUser):
     Whatsapp = models.URLField(max_length=200, null=True, blank=True)
 
 
+<<<<<<< HEAD
+=======
+=======
+    cpf = models.CharField(max_length=14,unique=True,verbose_name='CPF',help_text='Informe o CPF no formato 000.000.000-00')
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
 
     def __str__(self):
         return self.email # Isso ajuda a ver o email do usuário no painel admin
@@ -69,6 +92,10 @@ class Usuario(AbstractUser):
         permissions = [
             ('detalha_pessoa', 'Pode ver detalhes de uma pessoa em específico')
         ]
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
         
     @property
     def perfil_completo(self):
@@ -77,3 +104,8 @@ class Usuario(AbstractUser):
         campos_obrigatorios = [self.sobre,self.estado,self.cidade,self.bairro,self.logradouro,self.numero]
         return all(campos_obrigatorios)
     
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220

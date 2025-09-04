@@ -21142,7 +21142,11 @@ div.tagsinput {
       width: 100%; } }
 
 .content-wrapper {
+<<<<<<< HEAD
   background: #ffffff;
+=======
+  background: #000000;
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
   padding: 1.875rem 1.75rem;
   width: 100%;
   -webkit-flex-grow: 1;

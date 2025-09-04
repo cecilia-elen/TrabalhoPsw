@@ -90,4 +90,8 @@ def excluir_produto_admin(request, pk):
         'item': produto,
         'tipo': 'Produto'
     }
+<<<<<<< HEAD
     return render(request, 'produto/excluir_produto_confirmar.html', contexto)
+=======
+    return render(request, 'produto/excluir_produto_confirmar.html', contexto)
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
