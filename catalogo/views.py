@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
@@ -28,11 +21,7 @@ def criar_catalogo(request):
         form = CatalogoForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             catalogo = form.save()
-<<<<<<< HEAD
             messages.success(request, f'Catálogo "{catalogo.nome}" criado com sucesso! Agora adicione produtos a ele.')
-=======
-            messages.success(request, f'Catálogo "{catalogo.título}" criado com sucesso! Agora adicione produtos a ele.')
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
             return redirect(reverse('catalogo:detalhe_catalogo', kwargs={'pk': catalogo.pk}))
     else:
         form = CatalogoForm(user=request.user)
@@ -49,11 +38,7 @@ def detalhe_catalogo(request, pk):
     # Verifica se o usuário logado é o dono do catálogo
     is_owner = False
     if request.user.is_authenticated:
-<<<<<<< HEAD
         if request.user == catalogo.empresa.responsavel:
-=======
-        if request.user == catalogo.empresa.usuario:
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
             is_owner = True
 
     context = {
@@ -68,11 +53,7 @@ def detalhe_catalogo(request, pk):
 
 @login_required
 def listar_catalogos(request):
-<<<<<<< HEAD
     catalogos = Catalogo.objects.all().order_by('empresa__responsavel__first_name', 'nome')
-=======
-    catalogos = Catalogo.objects.all().order_by('empresa__usuario__first_name', 'título')
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
     return render(request, 'catalogo/listar_catalogos.html', {'catalogos': catalogos})
 
 
@@ -80,11 +61,7 @@ def excluir_catalogo_admin(request, pk):
     # Busca o catálogo pelo ID ou retorna um erro 404 se não encontrar
     catalogo = get_object_or_404(Catalogo, pk=pk)
     # Guarda o nome para usar na mensagem antes de deletar
-<<<<<<< HEAD
     nome_catalogo = catalogo.nome
-=======
-    nome_catalogo = catalogo.título
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
     catalogo.delete()
     # mensagem de sucesso
     messages.success(request, f'O catálogo "{nome_catalogo}" foi excluído com sucesso.')
@@ -94,11 +71,7 @@ def excluir_catalogo_admin(request, pk):
 @login_required
 def visualizar_catalogos(request):
     # Filtra os catálogos para pegar apenas aqueles cuja empresa pertence ao usuário logado
-<<<<<<< HEAD
     catalogos = Catalogo.objects.filter(empresa__responsavel=request.user).order_by('-id')
-=======
-    catalogos = Catalogo.objects.filter(empresa__usuario=request.user).order_by('-id')
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
     context = {
         'catalogos': catalogos
     }
@@ -120,11 +93,7 @@ def alterar_catalogo(request, pk):
         form = CatalogoForm(request.POST, request.FILES, instance=catalogo, user=request.user)
         if form.is_valid():
             form.save()
-<<<<<<< HEAD
             messages.success(request, f'Catálogo "{catalogo.nome}" alterado com sucesso!')
-=======
-            messages.success(request, f'Catálogo "{catalogo.título}" alterado com sucesso!')
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
             return redirect('catalogo:visualizar_catalogos')
     else:
         # Abre o formulário preenchido com os dados atuais do catálogo
@@ -198,11 +167,7 @@ def excluir_catalogo(request, pk):
 
     # Se o formulário de confirmação foi enviado (POST)
     if request.method == 'POST':
-<<<<<<< HEAD
         nome_catalogo = catalogo.nome
-=======
-        nome_catalogo = catalogo.título
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
         catalogo.delete()
         messages.success(request, f'O catálogo "{nome_catalogo}" foi excluído com sucesso!')
         
@@ -214,18 +179,4 @@ def excluir_catalogo(request, pk):
     
     # No o primeiro acesso (GET), apenas mostra a página de confirmação
     contexto = {'catalogo': catalogo}
-<<<<<<< HEAD
     return render(request, 'catalogo/excluir_catalogo.html', contexto)
-#
-=======
-<<<<<<< HEAD
-    return render(request, 'catalogo/excluir_catalogo.html', contexto)
-=======
-    return render(request, 'catalogo/excluir_catalogo.html', contexto)
-=======
-from django.shortcuts import render
-
-# Create your views here.
->>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
->>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
