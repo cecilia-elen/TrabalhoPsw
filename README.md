@@ -78,7 +78,7 @@ Ceci (dona de Atelier)
 
 Natan (dono de uma concessionária)
 
-Ítalo (dono de uma loja de eletrônicos)
+Italo (dono de uma loja de eletrônicos)
 
 
 #IMPORTANTE A senha é igual para todos os usuários povoados: projetopsw
