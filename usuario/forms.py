@@ -100,3 +100,4 @@ class AdminUsuarioUpdateForm(forms.ModelForm):
         model = Usuario
         # A lista de campos que o admin pode editar
         fields = ('username', 'first_name', 'last_name', 'email', 'cpf')
+#

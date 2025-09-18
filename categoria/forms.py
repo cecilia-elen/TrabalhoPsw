@@ -10,3 +10,4 @@ class CategoriaForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # Este trecho torna o campo 'categoria_pai' opcional no formulário
       
+#

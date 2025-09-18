@@ -16,3 +16,4 @@ class CustomUserAdmin(UserAdmin):
 # Re-registre o modelo User padrão com nossa configuração customizada
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
+#

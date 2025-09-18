@@ -11,3 +11,4 @@ urlpatterns = [
     path('<int:pk>/excluir/', views.excluir_categoria, name='excluir_categoria'),
 
 ]
+#

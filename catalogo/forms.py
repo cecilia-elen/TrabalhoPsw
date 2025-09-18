@@ -32,3 +32,4 @@ class CatalogoForm(forms.ModelForm):
          # Adiciona uma classe ao widget do campo 'categoria'
         # para que o JavaScript Select2 possa encontrá-lo e fazer a formatação que tá no bootstrap
         self.fields['categoria'].widget.attrs.update({'class': 'select2-field'})
+        #

@@ -3,3 +3,4 @@
 
 # Esta linha "mágica" registra o modelo Categoria no painel admin
 #admin.site.register(Categoria)
+#

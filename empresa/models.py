@@ -41,3 +41,4 @@ class Empresa(models.Model):
         return self.detalhamento if self.detalhamento else self.responsavel.detalhamento
     def __str__(self):
         return self.nome
+    #

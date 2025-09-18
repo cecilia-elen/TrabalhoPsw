@@ -39,3 +39,4 @@ class Usuario(User, ImageHandlerMixin):
         campos_obrigatorios = [self.sobre,self.estado,self.cidade,self.bairro,self.logradouro,self.numero]
         return all(campos_obrigatorios)
     
+#

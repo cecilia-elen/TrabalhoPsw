@@ -23,3 +23,4 @@ class Catalogo(ImageHandlerMixin, models.Model):
         # Garante que não exista outro catálogo com o mesmo título para a mesma empresa
         unique_together = ('empresa', 'nome')
         verbose_name_plural = "Catálogos"
+        #

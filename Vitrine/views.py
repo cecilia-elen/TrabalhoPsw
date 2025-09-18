@@ -56,3 +56,4 @@ def resultados_busca(request):
     
     # O Django vai procurar este template em uma pasta 'templates' na raiz do projeto,
     return render(request, 'vitrine/resultados_busca.html', contexto)
+#

@@ -180,3 +180,4 @@ def excluir_catalogo(request, pk):
     # No o primeiro acesso (GET), apenas mostra a página de confirmação
     contexto = {'catalogo': catalogo}
     return render(request, 'catalogo/excluir_catalogo.html', contexto)
+#

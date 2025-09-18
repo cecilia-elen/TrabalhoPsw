@@ -139,3 +139,4 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 #Diz ao django qual é a url de login
 LOGIN_URL = 'usuario:login'
 
+#

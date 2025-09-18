@@ -38,4 +38,4 @@ class Catalogo_ProdutoForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         if empresa:
             self.fields['produto'].queryset = Produto.objects.filter(empresa=empresa)   
-    
+    #

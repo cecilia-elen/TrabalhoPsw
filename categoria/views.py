@@ -63,3 +63,4 @@ def excluir_categoria(request, pk):
         'categoria': categoria
     }
     return render(request, 'categoria/excluir_categoria_confirmar.html', context)
+#
