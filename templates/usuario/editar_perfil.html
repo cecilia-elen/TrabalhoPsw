@@ -9,7 +9,6 @@
         
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-<<<<<<< HEAD
             {% if form.non_field_errors %}
             <div class="alert alert-danger" role="alert">
                 {% for error in form.non_field_errors %}
@@ -17,49 +16,25 @@
                 {% endfor %}
             </div>
             {% endif %}
-=======
-             {% if form.non_field_errors %}
-        <div class="alert alert-danger" role="alert">
-            {% for error in form.non_field_errors %}
-                {{ error }}
-            {% endfor %}
-        </div>
-    {% endif %}
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 
             <div class="card mb-4">
                 <div class="card-body">
                     <h2 class="card-title">Personalização e Redes de contato</h2>
                     <div class="form-group">
-<<<<<<< HEAD
                         <div class="row align-items-center">
                             <div class="col-md-8">
                                 <label class="font-weight-bold d-block mb-3">Foto de perfil</label>
                                 <button type="button" id="custom-upload-button" class="btn btn-primary">Alterar Foto</button>
-=======
-
-    <div class="row align-items-center">
-        <div class="col-md-8">
-                                <label class="font-weight-bold d-block mb-3">Foto de perfil</label>
-
-                                <button type="button" id="custom-upload-button" class="btn btn-primary">Alterar Foto</button>
-
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                                 <div style="display: none;">
                                     {{ form.foto_perfil }}
                                 </div>
                             </div>
 
                             <div class="col-md-4 d-flex justify-content-center align-items-center">
-<<<<<<< HEAD
                                 
                                 {% if user.usuario.get_image_base64 %}
                                     <img id="imagem-preview" src="data:image/jpeg;base64,{{ user.usuario.get_image_base64 }}" alt="Prévia da foto de perfil">
                                     <i id="icon-placeholder" class="mdi mdi-camera-off" style="font-size: 80px; color: #444; display: none;"></i>
-=======
-                                {% if user.foto_perfil %}
-                                    <img id="imagem-preview" src="{{ user.foto_perfil.url }}" alt="Prévia da foto de perfil">
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                                 {% else %}
                                     <img id="imagem-preview" src="#" alt="Prévia da foto de perfil" style="display: none;">
                                     <i id="icon-placeholder" class="mdi mdi-camera-off" style="font-size: 80px; color: #444;"></i>
@@ -68,12 +43,7 @@
                         </div>
                     </div>
                     {{ form.sobre|as_crispy_field }}
-
-<<<<<<< HEAD
                    <hr>
-=======
-                    <hr>
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                     <h5 class="mt-4">Telefone e Links das Redes Sociais</h5>
                     <p class="card-description">Lembre-se: você precisa preencher pelo menos uma forma de contato.</p>
                     
@@ -98,10 +68,7 @@
                 <div class="card-body">
                     <h2 class="card-title">Endereço</h2>
                     <p class="card-description">Onde seus clientes podem te encontrar fisicamente?</p>
-<<<<<<< HEAD
-=======
 
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                     <div class="row">
                         <div class="col-md-6">{{ form.estado|as_crispy_field }}</div>
                         <div class="col-md-6">{{ form.cidade|as_crispy_field }}</div>
@@ -117,13 +84,8 @@
                 <button type="submit" class="btn btn-primary mr-2">Salvar Alterações</button>
                 <a href="{% url 'usuario:perfil' %}" class="btn btn-dark">Cancelar</a>
             </div>
-<<<<<<< HEAD
-        </form>
-=======
-
         </form>
 
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
     </div>
 </div>
 <!-- css da imagem de prévia -->
