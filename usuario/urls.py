@@ -10,7 +10,6 @@ urlpatterns = [
    path('login/', views.login_user, name="login"),
      # Quando a URL for /usuario/logout/, esta view será chamada
    path('logout/', views.logout_user, name="logout"),
-<<<<<<< HEAD
    #URL pra ver o próprio perfil 
    path('perfil/', views.perfil, name='perfil'),
    # URL para ver o perfil de OUTRA PESSOA (ex: /usuario/perfil/5/)
