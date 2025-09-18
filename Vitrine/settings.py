@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'produto',
     'categoria',
     'catalogo',
-    'usuario',
+    'usuario.apps.UsuarioConfig',
     'empresa',
     'crispy_forms',
     'crispy_bootstrap5',
@@ -133,12 +133,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# Para o Django usar o modelo padrão "personalizado" de usuário que eu fiz
-AUTH_USER_MODEL = 'usuario.Usuario'
 # Para eu conseguir usar formulários personalizados do bootstrap e os dados que eu defini no models.py
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-# Caminhos para dizer o Django onde estão as imagens que o usuário usou pra fazer upload
-MEDIA_URL = '/uploads/'
-# Pasta na raiz do projeto onde os arquivos de upload serão salvos
-MEDIA_ROOT = BASE_DIR / 'uploads'
+#Diz ao django qual é a url de login
+LOGIN_URL = 'usuario:login'
+

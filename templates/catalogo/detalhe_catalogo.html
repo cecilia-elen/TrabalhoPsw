@@ -2,18 +2,21 @@
 {% load static %}
 
 {% block content %}
-
 <section class="page-section bg-light" id="portfolio">
+    {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">{{ catalogo.título }}</h2>
-
+            <h2 class="section-heading text-uppercase">{{ catalogo.nome }}</h2>
             <h4 class="section-subheading">
                 <a href="{% url 'empresa:perfil_empresa' catalogo.empresa.pk %}" class="link-dark text-decoration-none">
-                    Por: {{ catalogo.empresa.nome_loja }}
+                    Por: {{ catalogo.empresa.nome }}
                 </a>
             </h4>
-            <h3 class="section-subheading text-muted">{{ catalogo.descrição|default:"Conheça os produtos deste catálogo." }}</h3>
+            <h3 class="section-subheading text-muted">{{ catalogo.descricao|default:"Conheça os produtos deste catálogo." }}</h3>
         </div>
         <div class="row">
 
@@ -37,10 +40,10 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        {% if cp.produto.imagem %}
-                            <img class="img-fluid" src="{{ cp.produto.imagem.url }}" alt="{{ cp.produto.nome }}" />
+                        {% if cp.produto.IMG %}
+                            <img class="img-fluid product-image-grid" src="data:image/jpeg;base64,{{ cp.produto.get_image_base64 }}" alt="{{ cp.produto.nome }}" />
                         {% else %}
-                             <img class="img-fluid" src="{% static 'images/placeholder.png' %}" alt="Sem imagem" />
+                             <img class="img-fluid product-image-grid" src="{% static 'images/placeholder.png' %}" alt="Sem imagem" />
                         {% endif %}
                     </a>
                     <div class="portfolio-caption">
@@ -58,7 +61,7 @@
             {% empty %}
                 {% if not is_owner %}
                 <div class="col-12 text-center">
-                    <p class="text-muted fs-4 mt-5">Este catálogo ainda não possui produtos. 썰</p>
+                    <p class="text-muted fs-4 mt-5">Este catálogo ainda não possui produtos.</p>
                 </div>
                 {% endif %}
             {% endfor %}
@@ -66,7 +69,7 @@
         </div>
     </div>
 </section>
-
+<!-- Parte que quando clica no produto detalha-->
 {% for cp in catalogo_produtos %}
 <div class="portfolio-modal modal fade" id="produtoModal{{ cp.produto.pk }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -77,17 +80,17 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <h2 class="text-uppercase">{{ cp.produto.nome }}</h2>
-                            <p class="item-intro text-muted">{{ catalogo.empresa.nome_loja }}</p>
+                            <p class="item-intro text-muted">{{ catalogo.empresa.nome }}</p>
                             
-                            {% if cp.produto.imagem %}
-                                <img class="img-fluid d-block mx-auto" src="{{ cp.produto.imagem.url }}" alt="{{ cp.produto.nome }}" />
+                            {% if cp.produto.IMG %}
+                                <img class="img-fluid product-image-modal" src="data:image/jpeg;base64,{{ cp.produto.get_image_base64 }}" alt="{{ cp.produto.nome }}" />
                             {% endif %}
                             
                             <p class="mt-4">{{ cp.produto.descricao|default:"Produto sem descrição detalhada." }}</p>
                             
                             <ul class="list-inline">
                                 <li>
-                                    <strong>Preço neste catálogo:</strong>
+                                    <strong>Preço:</strong>
                                     R$ {{ cp.preco_final|floatformat:2 }}
                                 </li>
                                 <li>
@@ -116,13 +119,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 295px; /* Altura ajustada para alinhar com os outros cards */
+        min-height: 295px; 
         background-color: #f8f9fa;
         position: relative;
         transition: all 0.2s ease-in-out;
     }
     .add-product-card:hover {
-        border-color: #0d6efd; /* Cor primária do Bootstrap */
+        border-color: #0d6efd; 
         background-color: #e9ecef;
     }
     .add-product-content {
@@ -132,6 +135,22 @@
     .portfolio-item .owner-actions {
         padding-bottom: 1.5rem;
     }
+
+
+    .product-image-grid {
+        width: 100%;     
+        height: 220px;    
+        object-fit: cover; 
+    }
+
+    .product-image-modal {
+        max-width: 100%;      
+        max-height: 400px;   
+        display: block;       
+        margin: 0 auto;      
+        object-fit: contain; 
+    }
+
 </style>
 
 {% endblock %}

@@ -1,6 +1,5 @@
 {% extends 'componentes/interno/base.html' %}
 {% load static %}
-
 {% block content %}
 <div class="content-wrapper">
     <div class="row">
@@ -8,6 +7,11 @@
             <h3 class="mb-4">Meus Catálogos</h3>
         </div>
     </div>
+    {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
     <div class="row">
         <div class="col-md-4 grid-margin stretch-card">
             <a href="{% url 'catalogo:criar_catalogo' %}" class="card-link text-decoration-none">
@@ -23,16 +27,10 @@
         {% for catalogo in catalogos %}
         <div class="col-md-4 grid-margin stretch-card">
             <div class="card">
-                {% if catalogo.thumbnail %}
-                <img class="card-img-top" src="{{ catalogo.thumbnail.url }}" alt="{{ catalogo.título }}" style="height: 200px; object-fit: cover;">
-                {% else %}
-                <div class="d-flex justify-content-center align-items-center" style="height: 200px; background-color: #2c3038;">
-                    <i class="mdi mdi-image-area" style="font-size: 60px; color: #6c757d;"></i>
-                </div>
-                {% endif %}
+                <img src="data:image/jpeg;base64,{{ catalogo.get_image_base64 }}" alt="{{ catalogo.nome }}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ catalogo.título }}</h5>
-                    <p class="card-text text-muted">{{ catalogo.empresa.nome_loja }}</p>
+                    <h5 class="card-title">{{ catalogo.nome }}</h5>
+                    <p class="card-text text-muted">{{ catalogo.empresa.nome }}</p>
                     <div class="mt-3">
                         <a href="{% url 'catalogo:detalhe_catalogo' catalogo.pk %}" class="btn btn-outline-info btn-sm">Ver Catálogo</a>
                         <a href="{% url 'catalogo:alterar_catalogo' catalogo.pk %}" class="btn btn-outline-warning btn-sm">Alterar</a>

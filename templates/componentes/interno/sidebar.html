@@ -2,13 +2,12 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div
           class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand brand-logo"
-            href="{% url 'pagina-inicial' %}"><img
-              src="{% static 'perfil/template/assets/images/logo.png' %}"
-              alt="logo" /></a>
+          <a class="sidebar-brand brand-logo" href="{% url 'pagina-inicial' %}">
+    <img src="{% static 'perfil/template/assets/images/logo.png' %}" alt="logo" class="logo-principal" />
+</a>
           <a class="sidebar-brand brand-logo-mini"
             href="{% url 'pagina-inicial' %}"><img
-              src="{% static 'perfil/template/assets/images/logo-mini.svg' %}"
+              src="{% static 'perfil/template/assets/images/logo-mini.png' %}"
               alt="logo" /></a>
         </div>
         
@@ -119,3 +118,18 @@
           </li>
            {% endif %}
         </nav>
+
+        <!--Estilos para ajustar a logo do site que ficou bugada aqui-->
+<style>
+  .sidebar .sidebar-brand-wrapper .sidebar-brand.brand-logo {
+  height: 140px;
+  padding: 0;
+}
+
+.sidebar .sidebar-brand-wrapper .sidebar-brand.brand-logo img {
+  max-height: 100%; 
+  max-width: 100%; 
+  height: auto;  
+  width: auto;
+}
+</style>

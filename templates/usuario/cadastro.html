@@ -39,13 +39,16 @@
                             <div class="row">
                                 <div class="col-md-6 px-2">
                                     {{ form.first_name|as_crispy_field }}
+                                    {{ form.username|as_crispy_field }}
                                     {{ form.email|as_crispy_field }}
-                                    {{ form.password1|as_crispy_field }}
+                                    {{ form.password2|as_crispy_field }}
+                                    
                                 </div>
                                 <div class="col-md-6 px-2">
                                     {{ form.last_name|as_crispy_field }}
                                     {{ form.cpf|as_crispy_field }}
-                                    {{ form.password2|as_crispy_field }}
+                                    {{ form.password1|as_crispy_field }}
+                                    
                                 </div>
                             </div>
                             
@@ -82,7 +85,6 @@
     .form-text { display: none; color: #6c757d; font-size: 0.875em; }
 </style>
 <script>
-    // Seu JavaScript vai funcionar perfeitamente agora!
     function setupHelpTextToggle(inputId) {
         const inputField = document.getElementById(inputId);
         const helpTextDiv = document.querySelector('#div_' + inputId + ' .form-text');

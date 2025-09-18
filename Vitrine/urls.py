@@ -13,6 +13,8 @@ urlpatterns = [
     path('categoria/', include('categoria.urls')),
     path('produtos/', include('produto.urls')),
     path('empresa/', include('empresa.urls')),
+    path('buscar/', views.resultados_busca, name='search'),
+
 
 ]
 

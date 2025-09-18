@@ -4,8 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages #para essa parte de avisos de sucesso ou erro e tals
 from django.contrib.auth.decorators import login_required, permission_required
 from usuario.models import Usuario
-from .forms import UsuarioForm, LoginForm
-from .forms import UsuarioForm, UsuarioUpdateForm, LoginForm, AdminUsuarioForm
+from django.contrib.auth import get_user_model
+from .forms import UsuarioForm, UsuarioUpdateForm, LoginForm, AdminUsuarioUpdateForm
 
 def cadastro(request):
     if request.method == 'POST':
@@ -29,21 +29,25 @@ def cadastro(request):
 
 @login_required
 def editar_perfil(request):
+    perfil_do_usuario = request.user.usuario
+
     if request.method == 'POST':
         # Lembrar do request.FILES para a foto
-        form = UsuarioUpdateForm(request.POST, request.FILES, instance=request.user)
+        form = UsuarioUpdateForm(request.POST, request.FILES, instance=perfil_do_usuario)
         if form.is_valid():
             form.save()
             # Redireciona para a página de perfil para ver as alterações
+            messages.success(request, 'Seu perfil foi atualizado com sucesso!')
             return redirect(reverse('usuario:perfil'))
 
+        else:
+            messages.error(request, 'Houve um erro. Por favor, verifique os campos.')
+            form = UsuarioUpdateForm(instance=request.user)
     else:
-        # Preenche o formulário com os dados atuais do usuário
-        form = UsuarioUpdateForm(instance=request.user)
+        form = UsuarioUpdateForm(instance=perfil_do_usuario)
 
-    context = {'form': form}
-    # Precisamos de um novo template para esta página
-    return render(request, 'usuario/editar_perfil.html', context)
+    contexto = {'form': form}
+    return render(request, 'usuario/editar_perfil.html', contexto)
 
 
 
@@ -81,15 +85,29 @@ def logout_user(request):
  #Desloga o usuário e o redireciona para a página inicial.
 
 
-
-
-
-
 @login_required
-def perfil(request):
-    """Renderiza a página de perfil do usuário logado."""
-    # Rodar o Perfil do usuário com suas informações basiconas
-    return render(request, 'usuario/perfil.html')
+def perfil(request, pk=None):
+    #Renderiza a página de perfil. Se um 'pk' (ID do usuário) for fornecido na URL, mostra o perfil desse usuário, senao, mostra o perfil da pessoa logada
+    User = get_user_model() # Pega o modelo User padrão
+    
+    if pk:
+        # Estamos tentando ver o perfil de outra pessoa
+        usuario_alvo = get_object_or_404(User, pk=pk)
+    else:
+        # Estamos vendo nosso próprio perfil
+        usuario_alvo = request.user
+    
+    contexto = {
+        # Enviamos para o template quem é o "dono" do perfil que estamos vendo
+        'usuario_alvo': usuario_alvo
+    }
+    
+    # Vamos usar um template chamado 'perfil.html' para exibir as informações
+    return render(request, 'usuario/perfil.html', contexto)
+
+
+
+
 
 
 
@@ -112,9 +130,6 @@ def excluir_usuario(request):
 
 
 
-
-
-
 @login_required
 def visualizar_usuario(request):
     #Renderiza a página com todos os detalhes do perfil do usuário logado.
@@ -128,10 +143,9 @@ def visualizar_usuario(request):
 @login_required
 @permission_required('usuario.view_usuario', raise_exception=True)
 def listar_usuarios(request):
+    # Buscamos os objetos Usuario
     usuarios = Usuario.objects.all().order_by('first_name')
     return render(request, 'usuario/listar_usuarios.html', {'usuarios': usuarios})
-
-
 
 
 
@@ -149,18 +163,14 @@ def excluir_usuario_admin(request, pk):
         if request.user == usuario_alvo:
             messages.error(request, "Você não pode excluir sua própria conta de administrador a partir daqui.")
             return redirect('usuario:listar_usuarios')
-        nome_alvo = usuario_alvo.first_name # Guarda o nome para a mensagem de sucesso
+        nome_alvo = usuario_alvo.get_full_name() or usuario_alvo.username # Guarda o nome para a mensagem de sucesso
         usuario_alvo.delete()
         messages.success(request, f'O usuário "{nome_alvo}" foi excluído com sucesso.')
         return redirect('usuario:listar_usuarios')
 
     # Prepara o contexto para a página de confirmação
-    contexto = {'item': usuario_alvo, 'tipo': 'Usuário'}
+    contexto = {'item_a_excluir': usuario_alvo, 'tipo': 'Usuário'}
     return render(request, 'usuario/excluir_confirmacao.html', contexto)
-
-
-
-
 
 
 @login_required
@@ -172,14 +182,16 @@ def alterar_usuario_admin(request, pk):
 
     if request.method == 'POST':
         # Cria o formulário preenchido com os dados enviados e os arquivos
-        form = AdminUsuarioForm(request.POST, instance=usuario_alvo)
+        form = AdminUsuarioUpdateForm(request.POST, request.FILES, instance=usuario_alvo)
         if form.is_valid():
+            # Prepara o objeto usuario com os dados do form, mas não salva no banco ainda
             form.save()
+            
             messages.success(request, f'Os dados do usuário "{usuario_alvo.username}" foram atualizados com sucesso.')
-            return redirect('usuario:listar_usuarios') # Corrigido para incluir o namespace 'usuario'
+            return redirect('usuario:listar_usuarios')
     else:
-        # Usa o formulário AdminUsuarioForm para exibir os dados.
-        form = AdminUsuarioForm(instance=usuario_alvo)
+        # Usa o formulário AdminUsuarioUpdateForm para exibir os dados.
+        form = AdminUsuarioUpdateForm(instance=usuario_alvo)
 
     #Cria o contexto para enviar as variáveis para o template.
     contexto = {
@@ -188,6 +200,7 @@ def alterar_usuario_admin(request, pk):
     }
 
     return render(request, 'usuario/alterar_usuario_admin.html', contexto)
+
 
 @login_required
 @permission_required('usuario.add_usuario', raise_exception=True)
@@ -203,4 +216,3 @@ def criar_usuario_admin(request):
         form = UsuarioForm()
 
     return render(request, 'usuario/criar_usuario_admin.html', {'form': form})
-    

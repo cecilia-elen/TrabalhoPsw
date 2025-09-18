@@ -8,40 +8,39 @@
             <div class="card-body">
                 <h3 class="card-title">Criar Novo Catálogo</h3>
 
-                    <form class="forms-sample" method="POST"
-                        enctype="multipart/form-data">
-                        {% csrf_token %}
+                <form class="forms-sample" method="POST"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
 
-                        <div class="form-group d-flex flex-column align-items-center">
-                            <label class="font-weight-bold d-block">Thumbnail do
-                                Catálogo</label>
-                            <img id="thumbnail-preview" src="#"
-                                alt="Prévia da imagem" class="mb-3"
-                                style="display: none;">
-                            <i id="icon-placeholder" class="mdi mdi-image-area"
-                                style="font-size: 100px; color: #444;"></i>
-                        </div>
+                    <div
+                        class="form-group d-flex flex-column align-items-center">
+                        <label class="font-weight-bold d-block">Thumbnail do
+                            Catálogo</label>
+                        <img id="thumbnail-preview" src="data:image/jpeg;base64,{{ catalogo.get_image_base64 }}" style="display: block;" alt="Prévia da imagem" class="mb-3">
+                        <i id="icon-placeholder" class="mdi mdi-image-area"
+                            style="font-size: 100px; color: #444; display: none;"></i>
+                    </div>
 
-                        {{ form.thumbnail|as_crispy_field }}
-                        {{ form.título|as_crispy_field }}
-                        {{ form.descrição|as_crispy_field }}
-                        {{ form.empresa|as_crispy_field }}
-                        {{ form.categoria|as_crispy_field }}
+                    {{ form.IMG|as_crispy_field }}
+                    {{ form.nome|as_crispy_field }}
+                    {{ form.descricao|as_crispy_field }}
+                    {{ form.empresa|as_crispy_field }}
+                    {{ form.categoria|as_crispy_field }}
 
-                        <div class="text-center mt-4">
-                            <button type="submit"
-                                class="btn btn-primary mr-2">Criar
-                                Catálogo</button>
-                            <a href="{% url 'usuario:perfil' %}"
-                                class="btn btn-dark">Cancelar</a>
-                        </div>
-                    </form>
-                </div>
+                    <div class="text-center mt-4">
+                        <button type="submit"
+                            class="btn btn-primary mr-2">Criar
+                            Catálogo</button>
+                        <a href="{% url 'usuario:perfil' %}"
+                            class="btn btn-dark">Cancelar</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <style>
+<style>
     #thumbnail-preview {
         width: 180px;
         height: 180px;
@@ -52,8 +51,8 @@
     }
 </style>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('id_thumbnail');
     const imagePreview = document.getElementById('thumbnail-preview');
@@ -82,4 +81,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 </script>
-    {% endblock %}
+{% endblock %}

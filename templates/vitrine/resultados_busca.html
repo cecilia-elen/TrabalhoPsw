@@ -1,0 +1,86 @@
+{% extends 'componentes/externo/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="page-section bg-light">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Resultados da Busca</h2>
+            {% if query %}
+                <h3 class="section-subheading text-muted">Você buscou por: "{{ query }}"</h3>
+            {% else %}
+                <h3 class="section-subheading text-muted">Por favor, digite um termo para buscar.</h3>
+            {% endif %}
+        </div>
+        <hr class="my-5">
+
+        {% for usuario in usuarios %}
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-2 d-flex justify-content-center align-items-center p-3">
+                    {% if usuario.usuario.get_image_base64 %}
+                        <img src="data:image/jpeg;base64,{{ usuario.usuario.get_image_base64 }}" class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" alt="{{ usuario.username }}">
+                    {% else %}
+                        <i class="fas fa-user-circle fa-5x text-muted"></i>
+                    {% endif %}
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'usuario:perfil_publico' usuario.pk %}">{{ usuario.get_username }}</a>
+                            <span class="badge bg-primary">Usuário</span>
+                        </h5>
+                        <!--Esse truncatewords delimita o tanto de texto que aparece, nesse caso, só 40 caracteres-->
+                        <p class="card-text">{{ usuario.usuario.sobre|truncatewords:40|default:"Este usuário ainda não adicionou uma descrição." }}</p>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% for empresa in empresas %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{% url 'empresa:perfil_empresa' empresa.pk %}">{{ empresa.nome }}</a>
+                    <span class="badge bg-success">Empresa</span>
+                </h5>
+                <p class="card-text text-muted">Ramo: {{ empresa.ramo }}</p>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% for catalogo in catalogos %}
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-2 d-flex justify-content-center align-items-center p-3">
+                    {% if catalogo.get_image_base64 %}
+                        <img src="data:image/jpeg;base64,{{ catalogo.get_image_base64 }}" class="img-fluid rounded" style="width: 100px; height: 100px; object-fit: cover;" alt="{{ catalogo.nome }}">
+                    {% else %}
+                        <i class="fas fa-book-open fa-5x text-muted"></i>
+                    {% endif %}
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'catalogo:detalhe_catalogo' catalogo.pk %}">{{ catalogo.nome }}</a>
+                            <span class="badge bg-info">Catálogo</span>
+                        </h5>
+                        <p class="card-text">{{ catalogo.descricao|truncatewords:30|default:"Este catálogo não possui descrição." }}</p>
+                        <p class="card-text"><small class="text-muted">Da empresa: {{ catalogo.empresa.nome }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% if not usuarios and not empresas and not catalogos and query %}
+        <div class="text-center mt-5">
+            <p class="fs-4 text-muted">Nenhum resultado encontrado para "{{ query }}".</p>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}

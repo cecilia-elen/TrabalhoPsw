@@ -3,8 +3,8 @@
             <div
               class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
               <a class="navbar-brand brand-logo-mini"
-                href="{% static 'perfil/template/index.html' %}"><img
-                  src="{% static 'perfil/template/assets/images/logo-mini.svg' %}"
+                href="{% url 'pagina-inicial' %}"><img
+                  src="{% static 'perfil/template/assets/images/logo-mini.png' %}"
                   alt="logo" /></a>
             </div>
             <div
@@ -15,10 +15,10 @@
               </button>
               <ul class="navbar-nav w-100">
                 <li class="nav-item w-100">
-                  <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                    <input type="text" class="form-control"
-                      placeholder="Search products">
-                  </form>
+                  <form class="d-flex" role="search" action="{% url 'search' %}" method="GET">
+    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="q">
+    <button class="btn btn-outline-light" type="submit">❮</button>
+</form>
                 </li>
               </ul>
               <ul class="navbar-nav navbar-nav-right">
@@ -26,10 +26,12 @@
     <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
         <div class="navbar-profile">
             
-            {% if user.foto_perfil %}
-                <img class="img-xs rounded-circle" src="{{ user.foto_perfil.url }}" alt="Foto de Perfil">
+            {% if user.usuario.get_image_base64 %}
+                <img src="data:image/jpeg;base64,{{ user.usuario.get_image_base64 }}"
+                     class="rounded-circle"
+                     style="width: 32px; height: 32px; object-fit: cover; margin-right: 10px;">
             {% else %}
-                <i class="mdi mdi-account-circle mdi-24px"></i>
+                <i class="fas fa-user-circle fa-2x" style="margin-right: 10px;"></i>
             {% endif %}
 
             <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ user.get_full_name|default:user.username }}</p>

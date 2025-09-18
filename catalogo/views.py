@@ -21,7 +21,7 @@ def criar_catalogo(request):
         form = CatalogoForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             catalogo = form.save()
-            messages.success(request, f'Catálogo "{catalogo.título}" criado com sucesso! Agora adicione produtos a ele.')
+            messages.success(request, f'Catálogo "{catalogo.nome}" criado com sucesso! Agora adicione produtos a ele.')
             return redirect(reverse('catalogo:detalhe_catalogo', kwargs={'pk': catalogo.pk}))
     else:
         form = CatalogoForm(user=request.user)
@@ -38,7 +38,7 @@ def detalhe_catalogo(request, pk):
     # Verifica se o usuário logado é o dono do catálogo
     is_owner = False
     if request.user.is_authenticated:
-        if request.user == catalogo.empresa.usuario:
+        if request.user == catalogo.empresa.responsavel:
             is_owner = True
 
     context = {
@@ -53,7 +53,7 @@ def detalhe_catalogo(request, pk):
 
 @login_required
 def listar_catalogos(request):
-    catalogos = Catalogo.objects.all().order_by('empresa__usuario__first_name', 'título')
+    catalogos = Catalogo.objects.all().order_by('empresa__responsavel__first_name', 'nome')
     return render(request, 'catalogo/listar_catalogos.html', {'catalogos': catalogos})
 
 
@@ -61,7 +61,7 @@ def excluir_catalogo_admin(request, pk):
     # Busca o catálogo pelo ID ou retorna um erro 404 se não encontrar
     catalogo = get_object_or_404(Catalogo, pk=pk)
     # Guarda o nome para usar na mensagem antes de deletar
-    nome_catalogo = catalogo.título
+    nome_catalogo = catalogo.nome
     catalogo.delete()
     # mensagem de sucesso
     messages.success(request, f'O catálogo "{nome_catalogo}" foi excluído com sucesso.')
@@ -71,7 +71,7 @@ def excluir_catalogo_admin(request, pk):
 @login_required
 def visualizar_catalogos(request):
     # Filtra os catálogos para pegar apenas aqueles cuja empresa pertence ao usuário logado
-    catalogos = Catalogo.objects.filter(empresa__usuario=request.user).order_by('-id')
+    catalogos = Catalogo.objects.filter(empresa__responsavel=request.user).order_by('-id')
     context = {
         'catalogos': catalogos
     }
@@ -93,7 +93,7 @@ def alterar_catalogo(request, pk):
         form = CatalogoForm(request.POST, request.FILES, instance=catalogo, user=request.user)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Catálogo "{catalogo.título}" alterado com sucesso!')
+            messages.success(request, f'Catálogo "{catalogo.nome}" alterado com sucesso!')
             return redirect('catalogo:visualizar_catalogos')
     else:
         # Abre o formulário preenchido com os dados atuais do catálogo
@@ -167,7 +167,7 @@ def excluir_catalogo(request, pk):
 
     # Se o formulário de confirmação foi enviado (POST)
     if request.method == 'POST':
-        nome_catalogo = catalogo.título
+        nome_catalogo = catalogo.nome
         catalogo.delete()
         messages.success(request, f'O catálogo "{nome_catalogo}" foi excluído com sucesso!')
         

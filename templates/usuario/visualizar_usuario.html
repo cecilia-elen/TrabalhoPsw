@@ -13,18 +13,20 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3 text-center">
-                            {% if user.foto_perfil %}
-                                <img src="{{ user.foto_perfil.url }}" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                            {% else %}
+                            {% if user.usuario.get_image_base64 %}
+              <img src="data:image/jpeg;base64,{{ user.usuario.get_image_base64 }}"
+                   class="rounded-circle"
+                   style="width: 100px; height: 100px; object-fit: cover;">
+              {% else %}
                                 <i class="mdi mdi-account-circle" style="font-size: 150px;"></i>
                             {% endif %}
                         </div>
                         <div class="col-md-9">
-                            <h4 class="card-title">{{ user.get_full_name }}</h4>
+                            <h4 class="card-title">{{ user.get_full_name }} - ({{ user.get_username }})</h4>
                             <p class="card-description">Membro desde: {{ user.date_joined|date:"d/m/Y" }}</p>
                             <hr>
                             <p><strong>E-mail:</strong> {{ user.email }}</p>
-                            <p><strong>CPF:</strong> {{ user.cpf }}</p>
+                            <p><strong>CPF:</strong> {{ user.usuario.cpf }}</p>
                             <p><strong>Senha:</strong> ******** </p>
                         </div>
                     </div>
@@ -36,9 +38,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Endereço</h4>
-                    {% if user.perfil_completo %}
-                    <p>{{ user.cidade }} - {{ user.estado }}: {{ user.bairro }}: {{ user.endereco }}, {{ user.numero }}</p>
-                        {% if user.detalhamento %}<p><em>Detalhamento: {{ user.detalhamento }}</em></p>{% endif %}
+                    {% if user.usuario.perfil_completo %}
+                    <p>{{ user.usuario.cidade }} - {{ user.usuario.estado }}: {{ user.usuario.bairro }}: {{ user.usuario.logradouro }}, {{ user.usuario.numero }}</p>
+                        {% if user.usuario.detalhamento %}<p><em>Detalhamento: {{ user.usuario.detalhamento }}</em></p>{% endif %}
                     {% else %}
                         <p class="text-muted">Você ainda não informou seu endereço.</p>
                         <a href="{% url 'usuario:editar_perfil' %}">Completar agora</a>
@@ -51,23 +53,23 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Contatos e Redes Sociais</h4>
-                    {% if user.Telefone %}
+                    {% if user.usuario.Telefone %}
                         <p class="d-flex align-items-center">
-                            <i class="mdi mdi-phone mr-2"></i> {{ user.Telefone }}
+                            <i class="mdi mdi-phone mr-2"></i> {{ user.usuario.Telefone }}
                         </p>
                     {% endif %}
                     
                     <div class="d-flex align-items-center flex-wrap">
-                        {% if user.Whatsapp %} <a href="{{ user.Whatsapp }}" target="_blank" class="text-secondary mr-4 mb-2" title="WhatsApp"><i class="mdi mdi-whatsapp" style="font-size: 28px;"></i></a> {% endif %}
-                        {% if user.Telegram %} <a href="{{ user.Telegram }}" target="_blank" class="text-secondary mr-4 mb-2" title="Telegram"><i class="mdi mdi-telegram" style="font-size: 28px;"></i></a> {% endif %}
-                        {% if user.Instagram %} <a href="{{ user.Instagram }}" target="_blank" class="text-secondary mr-4 mb-2" title="Instagram"><i class="mdi mdi-instagram" style="font-size: 28px;"></i></a> {% endif %}
-                        {% if user.Facebook %} <a href="{{ user.Facebook }}" target="_blank" class="text-secondary mr-4 mb-2" title="Facebook"><i class="mdi mdi-facebook" style="font-size: 28px;"></i></a> {% endif %}
-                        {% if user.X %} <a href="{{ user.X }}" target="_blank" class="text-secondary mr-4 mb-2" title="X (Twitter)"><i class="mdi mdi-twitter" style="font-size: 28px;"></i></a> {% endif %}
-                        {% if user.Tiktok %} <a href="{{ user.Tiktok }}" target="_blank" class="text-secondary mr-4 mb-2" title="TikTok"><i class="mdi mdi-tiktok" style="font-size: 28px;"></i></a> {% endif %}
-                        {% if user.Youtube %} <a href="{{ user.Youtube }}" target="_blank" class="text-secondary mr-4 mb-2" title="Youtube"><i class="mdi mdi-youtube" style="font-size: 28px;"></i></a> {% endif %}
-                        {% if user.LinkedIn %} <a href="{{ user.LinkedIn }}" target="_blank" class="text-secondary mr-4 mb-2" title="LinkedIn"><i class="mdi mdi-linkedin" style="font-size: 28px;"></i></a> {% endif %}
-                        {% if user.Github %} <a href="{{ user.Github }}" target="_blank" class="text-secondary mr-4 mb-2" title="Github"><i class="mdi mdi-github-circle" style="font-size: 28px;"></i></a> {% endif %}
-                        {% if user.Kwai %} <a href="{{ user.Kwai }}" target="_blank" class="text-secondary mr-4 mb-2" title="Kwai"><strong>Kwai</strong></a> {% endif %}
+                        {% if user.usuario.Whatsapp %} <a href="{{ user.usuario.Whatsapp }}" target="_blank" class="text-secondary mr-4 mb-2" title="WhatsApp"><i class="mdi mdi-whatsapp" style="font-size: 28px;"></i></a> {% endif %}
+                        {% if user.usuario.Telegram %} <a href="{{ user.usuario.Telegram }}" target="_blank" class="text-secondary mr-4 mb-2" title="Telegram"><i class="mdi mdi-telegram" style="font-size: 28px;"></i></a> {% endif %}
+                        {% if user.usuario.Instagram %} <a href="{{ user.usuario.Instagram }}" target="_blank" class="text-secondary mr-4 mb-2" title="Instagram"><i class="mdi mdi-instagram" style="font-size: 28px;"></i></a> {% endif %}
+                        {% if user.usuario.Facebook %} <a href="{{ user.usuario.Facebook }}" target="_blank" class="text-secondary mr-4 mb-2" title="Facebook"><i class="mdi mdi-facebook" style="font-size: 28px;"></i></a> {% endif %}
+                        {% if user.usuario.X %} <a href="{{ user.usuario.X }}" target="_blank" class="text-secondary mr-4 mb-2" title="X (Twitter)"><i class="mdi mdi-twitter" style="font-size: 28px;"></i></a> {% endif %}
+                        {% if user.usuario.Tiktok %} <a href="{{ user.usuario.Tiktok }}" target="_blank" class="text-secondary mr-4 mb-2" title="TikTok"><i class="mdi mdi-tiktok" style="font-size: 28px;"></i></a> {% endif %}
+                        {% if user.usuario.Youtube %} <a href="{{ user.usuario.Youtube }}" target="_blank" class="text-secondary mr-4 mb-2" title="Youtube"><i class="mdi mdi-youtube" style="font-size: 28px;"></i></a> {% endif %}
+                        {% if user.usuario.LinkedIn %} <a href="{{ user.usuario.LinkedIn }}" target="_blank" class="text-secondary mr-4 mb-2" title="LinkedIn"><i class="mdi mdi-linkedin" style="font-size: 28px;"></i></a> {% endif %}
+                        {% if user.usuario.Github %} <a href="{{ user.usuario.Github }}" target="_blank" class="text-secondary mr-4 mb-2" title="Github"><i class="mdi mdi-github-circle" style="font-size: 28px;"></i></a> {% endif %}
+                        {% if user.usuario.Kwai %} <a href="{{ user.usuario.Kwai }}" target="_blank" class="text-secondary mr-4 mb-2" title="Kwai"><strong>Kwai</strong></a> {% endif %}
                     </div>
                 </div>
             </div>

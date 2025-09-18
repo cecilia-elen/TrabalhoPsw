@@ -7,38 +7,42 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title">Alterar Catálogo</h3>
-                <p class="card-description">Modifique as informações do catálogo "{{ catalogo.título }}".</p>
+                <p class="card-description">Modifique as informações do catálogo
+                    "{{ catalogo.nome }}".</p>
 
-                <form class="forms-sample" method="POST" enctype="multipart/form-data">
+                <form class="forms-sample" method="POST"
+                    enctype="multipart/form-data">
                     {% csrf_token %}
 
-                    <div id="thumbnail-container" class="form-group d-flex flex-column align-items-center">
-                        <label class="font-weight-bold d-block">Thumbnail do Catálogo</label>
-                        
-                        <img id="thumbnail-preview" 
-                             {% if catalogo.thumbnail %}
-                                 src="{{ catalogo.thumbnail.url }}" style="display: block;"
-                             {% else %}
-                                 src="#" style="display: none;"
-                             {% endif %}
-                             alt="Prévia da imagem" class="mb-3">
-                        
+                    <div id="thumbnail-container"
+                        class="form-group d-flex flex-column align-items-center">
+                        <label class="font-weight-bold d-block">Thumbnail do
+                            Catálogo</label>
+
+                        <img id="thumbnail-preview"
+                            src="data:image/jpeg;base64,{{ catalogo.get_image_base64 }}"
+                            style="display: block;"
+                            alt="Prévia da imagem" class="mb-3">
+
                         <i id="icon-placeholder" class="mdi mdi-image-area"
-                           style="font-size: 100px; color: #444; {% if catalogo.thumbnail %} display: none;{% endif %}"></i>
+                            style="font-size: 100px; color: #444; display: none;"></i>
                     </div>
 
                     <div style="display: none;">
-                        {{ form.thumbnail }}
+                        {{ form.IMG }}
                     </div>
-                    
-                    {{ form.título|as_crispy_field }}
-                    {{ form.descrição|as_crispy_field }}
+
+                    {{ form.nome|as_crispy_field }}
+                    {{ form.descricao|as_crispy_field }}
                     {{ form.empresa|as_crispy_field }}
                     {{ form.categoria|as_crispy_field }}
 
                     <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary mr-2">Salvar Alterações</button>
-                        <a href="{% url 'catalogo:visualizar_catalogos' %}" class="btn btn-dark">Cancelar</a>
+                        <button type="submit"
+                            class="btn btn-primary mr-2">Salvar
+                            Alterações</button>
+                        <a href="{% url 'catalogo:visualizar_catalogos' %}"
+                            class="btn btn-dark">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -62,7 +66,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const fileInput = document.getElementById('id_thumbnail');
+    const fileInput = document.getElementById('id_IMG');
     const imagePreview = document.getElementById('thumbnail-preview');
     const iconPlaceholder = document.getElementById('icon-placeholder');
     const thumbnailContainer = document.getElementById('thumbnail-container');

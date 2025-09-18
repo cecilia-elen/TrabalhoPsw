@@ -21,7 +21,7 @@ def gerenciar_categorias(request):
         form = CategoriaForm()
 
      #Busca todas as categorias existentes para listar na página
-    categorias_existentes = Categoria.objects.all().order_by('categoria_pai__nome', 'nome')
+    categorias_existentes = Categoria.objects.all().order_by('cat_pai__nome', 'nome')
     #organiza todas as categorias existentes em um forms
     context = {'form': form,'categorias': categorias_existentes}
     

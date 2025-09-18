@@ -20,7 +20,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Nome da Loja</th>
+              <th>Nome</th>
               <th>CNPJ</th>
               <th>Cidade/Estado</th>
               <th>Ramo</th>
@@ -30,8 +30,8 @@
           <tbody>
             {% for empresa in empresas %}
             <tr>
-              <td>{{ empresa.nome_loja }}</td>
-              <td>{{ empresa.cnpj|default:"Não informado" }}</td>
+              <td>{{ empresa.nome }}</td>
+              <td>{{ empresa.CNPJ|default:"Não informado" }}</td>
               <td>{{ empresa.cidade_display }} / {{ empresa.estado_display }}</td>
               <td>{{ empresa.ramo }}</td>
               <td>
