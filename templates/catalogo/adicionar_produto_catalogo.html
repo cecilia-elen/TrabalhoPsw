@@ -1,0 +1,28 @@
+{% extends 'componentes/interno/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="col-md-6 grid-margin stretch-card mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Adicionar Produto ao Catálogo</h3>
+                <p class="card-description">
+                    Você está adicionando um produto ao catálogo: <strong>"{{ catalogo.nome }}"</strong>
+                </p>
+
+                <form class="forms-sample" method="POST">
+                    {% csrf_token %}
+
+                    {{ form|crispy }}
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary mr-2">Adicionar Produto</button>
+                        <a href="{% url 'catalogo:detalhe_catalogo' catalogo.pk %}" class="btn btn-dark">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
