@@ -8,7 +8,6 @@ from .models import Produto
 @login_required
 def gerenciar_produtos(request):
     #Verifica se o usuário tem pelo menos uma empresa
-<<<<<<< HEAD
     if not request.user.usuario.empresas.exists():
         messages.error(request, 'Você precisa cadastrar uma empresa antes de gerenciar produtos.')
         return redirect('empresa:gerenciar_empresa')
