@@ -8,7 +8,7 @@ Desenvolvedores do Sistema:
 Turma: 3BII 
 (TA’s 2024)
 
-#O que é? Qual é seu objetivo?
+# O que é? Qual é seu objetivo?
 
 Um sistema de catálogo virtual projetado para otimizar as vendas online de pequenos e médios comércios, facilitando a exposição de produtos para clientes na internet.
 Muitos comércios, especialmente os de menor porte, ainda não possuem um catálogo virtual. Isso cria um desafio para os vendedores, que acabam tendo dificuldades para mostrar todas as mercadorias disponíveis para a clientela online. Esse processo manual pode gerar desentendimentos, atrasos na comunicação e, consequentemente, a perda de vendas.
