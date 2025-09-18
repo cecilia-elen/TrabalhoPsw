@@ -8,7 +8,6 @@
         <div class="card-body px-5 py-5">
             <h3 class="card-title text-left mb-3">Criar Novo Usuário (Admin)</h3>
             <form method="POST">
-<<<<<<< HEAD
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6 px-2">
@@ -25,21 +24,6 @@
                                     
                                 </div>
                             </div>
-=======
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-md-6 px-2">
-                        {{ form.first_name|as_crispy_field }}
-                        {{ form.email|as_crispy_field }}
-                        {{ form.password1|as_crispy_field }}
-                    </div>
-                    <div class="col-md-6 px-2">
-                        {{ form.last_name|as_crispy_field }}
-                        {{ form.cpf|as_crispy_field }}
-                        {{ form.password2|as_crispy_field }}
-                    </div>
-                </div>
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                 
                 <div class="text-center mt-3">
                     <button type="submit" class="btn btn-primary btn-block enter-btn">Criar Usuário</button>
