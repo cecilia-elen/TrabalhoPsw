@@ -19,13 +19,8 @@
         <table class="table">
           <thead>
             <tr>
-<<<<<<< HEAD
               <th>Nome</th>
               <th>Responsável</th>
-=======
-              <th>Nome da Loja</th>
-              <th>Dono</th>
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
               <th>CNPJ</th>
               <th>Cidade/Estado</th>
               <th>Ações</th>
@@ -34,24 +29,12 @@
           <tbody>
             {% for empresa in empresas %}
             <tr>
-<<<<<<< HEAD
               <td>{{ empresa.nome }}</td>
               <td>{{ empresa.responsavel.get_username }}</td>
               <td>{{ empresa.CNPJ}}</td>
               <td>{{ empresa.cidade_display}} / {{ empresa.estado_display}}</td>
               <td>
                 <a href="{% url 'empresa:excluir_empresa_admin' empresa.pk %}" class="btn btn-danger btn-sm">Excluir</a>
-                
-=======
-              <td>{{ empresa.nome_loja }}</td>
-              <td>{{ empresa.usuario.first_name }}</td>
-              <td>{{ empresa.cnpj}}</td>
-              <td>{{ empresa.cidade_display}} / {{ empresa.estado_display}}</td>
-              <td>
-                <a href="{% url 'empresa:excluir_empresa' empresa.pk %}" class="btn btn-danger btn-sm">
-                  Excluir
-                </a>
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
               </td>
             </tr>
             {% empty %}
