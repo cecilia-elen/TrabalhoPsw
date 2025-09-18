@@ -10,20 +10,12 @@ urlpatterns = [
     path('adicionar/', views.adicionar_empresa, name='adicionar_empresa'),
 #O ADM pode ver e excluir empresas (pq n faz sentido ele alterar e criar a empresa dos outros...)
     path('ADM/', views.listar_empresas, name='listar_empresas'),
-<<<<<<< HEAD
    path('ADM/excluir/<int:pk>/', views.excluir_empresa_admin, name='excluir_empresa_admin'),
-=======
-    path('ADM/', views.excluir_empresa_admin, name='excluir_empresa'),
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
         # URL para a ação de excluir. Precisam do (pk) da empresa
     path('excluir/<int:pk>/', views.excluir_empresa, name='excluir_empresa'),
 #para mostrar o perfil da empresa
      path('perfil/<int:pk>/', views.perfil_empresa, name='perfil_empresa'),
      #pra alterar a empresa em específico 
       path('alterar/<int:pk>/', views.alterar_empresa, name='alterar_empresa'),
-<<<<<<< HEAD
+
 ]
-#
-=======
-]
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
