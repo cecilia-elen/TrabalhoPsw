@@ -26,9 +26,14 @@ Durante a instalação, pode apenas clicar em "Next" em todas as telas.
 2. Instruções
    
 1- Abra o terminal do seu computador para digitar os comandos abaixo.
+
+
 (No Windows, procure por "Prompt de Comando" ou "PowerShell". No macOS ou Linux, procure por "Terminal").
+
 Clone o Repositório
+
 Este comando baixa uma cópia do projeto para o seu computador.
+
  git clone https://github.com/cecilia-elen/TrabalhoPsw.git
 
 2. Entre na Pasta do Projeto (Passo Essencial!)
