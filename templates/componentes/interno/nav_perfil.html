@@ -2,7 +2,9 @@
 <nav class="navbar p-0 fixed-top d-flex flex-row">
             <div
               class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-              <a class="navbar-brand brand-logo-mini" href="{% url 'pagina-inicial' %}"><img src="{% static 'perfil/template/assets/images/logo-mini.png' %}" alt="logo" /></a>
+              <a class="navbar-brand brand-logo-mini"
+                href="{% url 'pagina-inicial' %}"><img
+                  src="{% static 'perfil/template/assets/images/logo-mini.png' %}" alt="logo" /></a>
             </div>
             <div
               class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -23,7 +25,6 @@
     <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
         <div class="navbar-profile">
             
-<<<<<<< HEAD
             {% if user.usuario.get_image_base64 %}
                 <img src="data:image/jpeg;base64,{{ user.usuario.get_image_base64 }}"
                      class="rounded-circle"
