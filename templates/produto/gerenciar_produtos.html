@@ -34,7 +34,6 @@
                             <tbody>
                                 {% for produto in produtos %}
                                 <tr>
-<<<<<<< HEAD
                                     <td>
                                         <img src="data:image/jpeg;base64,{{ produto.get_image_base64 }}"
                                              class="rounded"
@@ -43,19 +42,6 @@
                                     </td>
                                     <td>{{ produto.nome }}</td>
                                     <td>{{ produto.empresa.nome }}</td> <td>{{ produto.categoria.nome|default:"-"}}</td>
-=======
-                                    <td> {% if produto.imagem %}
-                                        <img src="{{ produto.imagem.url }}"
-                                             class="rounded"
-                                             style="width: 50px; height: 50px; object-fit: cover;"
-                                             alt="{{ produto.nome }}">
-                                        {% else %}
-                                        <i class="mdi mdi-camera-off"></i>
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ produto.nome }}</td>
-                                    <td>{{ produto.empresa.nome_loja }}</td> <td>{{ produto.categoria.nome|default:"-"}}</td>
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                                     <td>R$ {{ produto.preco }}</td>
                                     <td class="text-center">
                                         <a href="{% url 'produto:alterar_produto' pk=produto.pk %}"
