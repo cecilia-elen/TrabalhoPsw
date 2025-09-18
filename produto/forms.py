@@ -19,10 +19,6 @@ class ProdutoForm(forms.ModelForm):
             instance.save()
         return instance
 
-    class Meta:
-        model = Produto
-        fields = ('nome', 'unidade', 'preco', 'descricao', 'imagem', 'categoria', 'empresa')
-
         # Ele garante que o dropdown 'empresa' só mostre as empresas do usuário logado.
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
@@ -30,6 +26,7 @@ class ProdutoForm(forms.ModelForm):
         
         if user:
             self.fields['empresa'].queryset = Empresa.objects.filter(responsavel=user)
+
 
 class Catalogo_ProdutoForm(forms.ModelForm):
     class Meta:
@@ -41,3 +38,4 @@ class Catalogo_ProdutoForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         if empresa:
             self.fields['produto'].queryset = Produto.objects.filter(empresa=empresa)   
+    
