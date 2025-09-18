@@ -4,11 +4,19 @@ from django.contrib import messages #import que avisa se deu certo adicionar o p
 from .forms import ProdutoForm
 from .models import Produto
 
+<<<<<<< HEAD
+=======
+# em produto/views.py (nenhuma mudança necessária aqui)
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 
 @login_required
 def gerenciar_produtos(request):
     #Verifica se o usuário tem pelo menos uma empresa
+<<<<<<< HEAD
     if not request.user.usuario.empresas.exists():
+=======
+    if not request.user.empresas.exists():
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
         messages.error(request, 'Você precisa cadastrar uma empresa antes de gerenciar produtos.')
         return redirect('empresa:gerenciar_empresa')
     
@@ -22,7 +30,11 @@ def gerenciar_produtos(request):
     else:
         # Também passa no GET para preencher o dropdown corretamente.
         form = ProdutoForm(user=request.user)
+<<<<<<< HEAD
         produtos_do_usuario = Produto.objects.filter(empresa__responsavel=request.user).order_by('-id')
+=======
+        produtos_do_usuario = Produto.objects.filter(empresa__usuario=request.user).order_by('-id')
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 
         contexto = {
         'form': form,
@@ -34,7 +46,11 @@ def gerenciar_produtos(request):
 @login_required
 def alterar_produto(request, pk):
       # Busca o produto e garante que ele pertence a uma das empresas do usuário
+<<<<<<< HEAD
     produto = get_object_or_404(Produto, pk=pk, empresa__responsavel=request.user)
+=======
+    produto = get_object_or_404(Produto, pk=pk, empresa__usuario=request.user)
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
     
     if request.method == 'POST':
         form = ProdutoForm(request.POST, request.FILES, instance=produto, user=request.user)
@@ -55,7 +71,11 @@ def alterar_produto(request, pk):
 @login_required
 def excluir_produto(request, pk):
     # Busca o produto, garantindo que pertence ao usuário logado (de novo)
+<<<<<<< HEAD
     produto = get_object_or_404(Produto, pk=pk, empresa__responsavel=request.user)
+=======
+    produto = get_object_or_404(Produto, pk=pk, empresa__usuario=request.user)
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
     
     if request.method == 'POST':
         produto.delete()
@@ -89,5 +109,13 @@ def excluir_produto_admin(request, pk):
         'item': produto,
         'tipo': 'Produto'
     }
+<<<<<<< HEAD
     return render(request, 'produto/excluir_produto_confirmar.html', contexto)
 #
+=======
+<<<<<<< HEAD
+    return render(request, 'produto/excluir_produto_confirmar.html', contexto)
+=======
+    return render(request, 'produto/excluir_produto_confirmar.html', contexto)
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08

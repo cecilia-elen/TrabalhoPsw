@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import Categoria
@@ -21,7 +28,11 @@ def gerenciar_categorias(request):
         form = CategoriaForm()
 
      #Busca todas as categorias existentes para listar na página
+<<<<<<< HEAD
     categorias_existentes = Categoria.objects.all().order_by('cat_pai__nome', 'nome')
+=======
+    categorias_existentes = Categoria.objects.all().order_by('categoria_pai__nome', 'nome')
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
     #organiza todas as categorias existentes em um forms
     context = {'form': form,'categorias': categorias_existentes}
     
@@ -62,5 +73,18 @@ def excluir_categoria(request, pk):
     context = {
         'categoria': categoria
     }
+<<<<<<< HEAD
     return render(request, 'categoria/excluir_categoria_confirmar.html', context)
 #
+=======
+<<<<<<< HEAD
+    return render(request, 'categoria/excluir_categoria_confirmar.html', context)
+=======
+    return render(request, 'categoria/excluir_categoria_confirmar.html', context)
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
+>>>>>>> 60e0c3e232c3b9522bac92c41a6682a34c1e7220
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08

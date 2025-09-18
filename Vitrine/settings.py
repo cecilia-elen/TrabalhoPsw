@@ -40,11 +40,26 @@ INSTALLED_APPS = [
     'produto',
     'categoria',
     'catalogo',
+<<<<<<< HEAD
     'usuario.apps.UsuarioConfig',
+=======
+    'usuario',
+<<<<<<< HEAD
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
     'empresa',
     'crispy_forms',
     'crispy_bootstrap5',
     'widget_tweaks',
+<<<<<<< HEAD
+=======
+=======
+    'perfil',
+    'like',
+    'dashboard',
+    'crispy_forms',
+    'crispy_bootstrap5',
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 ]
 
 MIDDLEWARE = [
@@ -124,7 +139,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+<<<<<<< HEAD
 #caminhos que configuram onde estão meus bootstraps
+=======
+<<<<<<< HEAD
+#caminhos que configuram onde estão meus bootstraps
+=======
+
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
@@ -133,6 +156,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+<<<<<<< HEAD
 # Para eu conseguir usar formulários personalizados do bootstrap e os dados que eu defini no models.py
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -140,3 +164,19 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 LOGIN_URL = 'usuario:login'
 
 #
+=======
+# Para o Django usar o modelo padrão "personalizado" de usuário que eu fiz
+AUTH_USER_MODEL = 'usuario.Usuario'
+<<<<<<< HEAD
+# Para eu conseguir usar formulários personalizados do bootstrap e os dados que eu defini no models.py
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+# Caminhos para dizer o Django onde estão as imagens que o usuário usou pra fazer upload
+MEDIA_URL = '/uploads/'
+# Pasta na raiz do projeto onde os arquivos de upload serão salvos
+MEDIA_ROOT = BASE_DIR / 'uploads'
+=======
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+>>>>>>> 1cea6da5e9c6ae1a5fcfbe83fecbbd074ab1453d
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08

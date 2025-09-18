@@ -14,4 +14,7 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Vitrine.settings')
 
 application = get_wsgi_application()
+<<<<<<< HEAD
 #
+=======
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08

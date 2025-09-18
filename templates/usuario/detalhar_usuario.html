@@ -1,0 +1,64 @@
+{% extends 'componentes/interno/base.html' %}
+{% load static %}
+{% block content %}
+<div class="main-panel">
+  <div class="content-wrapper">
+
+    <!-- Perfil do usuário -->
+    <div class="row">
+      <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body" style="position: relative;">
+            <div style="position: absolute; top: 20px; right: 20px;">
+              {% if usuario_alvo.perfil.foto_perfil %}
+              <img src="{{ usuario_alvo.perfil.foto_perfil.url }}"
+                class="rounded-circle"
+                style="width: 100px; height: 100px; object-fit: cover;">
+              {% else %}
+              <i class="mdi mdi-account-circle" style="font-size: 100px;"></i>
+              {% endif %}
+            </div>
+            <h3 class="card-title">
+              {{ usuario_alvo.get_display_name }}
+            </h3>
+            <p class="card-description">Membro desde: {{
+              usuario_alvo.date_joined|date:"d/m/Y" }}</p>
+
+            {% if user == usuario_alvo %}
+            <a href="{% url 'perfil:completar_perfil' %}"
+              class="btn btn-outline-primary btn-sm">Editar Perfil</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sobre e Localização -->
+    <div class="row">
+      <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Sobre</h4>
+            <p>{{
+              usuario_alvo.perfil.sobre|default:"Nenhuma informação preenchida."|linebreaks
+              }}</p>
+
+            <h4 class="card-title mt-4">Localização</h4>
+            <p>
+              {{ usuario_alvo.perfil.estado|default:"Estado não informado" }},
+              {{ usuario_alvo.perfil.cidade|default:"Cidade não informada" }}
+            </p>
+            <p>
+              {{ usuario_alvo.perfil.bairro|default:"Bairro não informado" }}:
+              {{ usuario_alvo.perfil.logradouro|default:"Logradouro não informado"
+              }},
+              {{ usuario_alvo.perfil.numero|default:"Sem número" }}
+            </p>
+            <p>{{ usuario_alvo.perfil.detalhamento|default:"" }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {% endblock %}

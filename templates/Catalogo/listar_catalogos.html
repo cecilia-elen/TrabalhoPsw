@@ -1,0 +1,60 @@
+{% extends 'componentes/interno/base.html' %}
+
+{% block content %}
+<div class="content-wrapper">
+  <div class="row justify-content-center">
+    <div class="col-lg-11 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Gerenciamento de Catálogos</h4>
+          <p class="card-description">Lista de todos os catálogos do sistema.</p>
+
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Dono</th>
+                  <th>Empresa</th>
+                  <th>Thumbnail</th>
+                  <th>Título</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for catalogo in catalogos %}
+                <tr>
+                  <td>{{ catalogo.empresa.usuario.get_full_name|default:catalogo.empresa.usuario.username }}</td>
+                  <td>{{ catalogo.empresa.nome_loja|default:"-" }}</td>
+                  <td>
+                    {% if catalogo.thumbnail %}
+                      <img src="{{ catalogo.thumbnail.url }}" alt="{{ catalogo.título }}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;">
+                    {% else %}
+                      <div class="d-flex justify-content-center align-items-center" style="width: 60px; height: 60px; background-color: #333; border-radius: 8px;">
+                          <i class="mdi mdi-image-area" style="font-size: 24px;"></i>
+                      </div>
+                    {% endif %}
+                  </td>
+                  <td>{{ catalogo.título }}</td>
+                  <td>
+                    <a href="{% url 'catalogo:detalhe_catalogo' catalogo.pk %}" class="btn btn-info btn-sm" title="Visualizar Detalhes">
+                        <i class="mdi mdi-eye"></i>
+                    </a>
+                    <a href="{% url 'catalogo:excluir_catalogo' catalogo.pk %}" class="btn btn-danger btn-sm" title="Excluir Catálogo">
+                    <i class="mdi mdi-delete"></i>
+                      </a>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="5" class="text-center py-4">Nenhum catálogo encontrado no sistema.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

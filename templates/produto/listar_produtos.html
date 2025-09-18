@@ -7,16 +7,23 @@
         <div class="card-body">
           <h4 class="card-title">Gerenciamento de Produtos</h4>
           <p class="card-description">Lista de todos os produtos do sistema.</p>
+<<<<<<< HEAD
           {% if messages %}
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
       {% endif %}
+=======
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 
           <div class="table-responsive">
             <table class="table table-hover"> <thead>
                 <tr>
+<<<<<<< HEAD
                   <th>Responsável</th>
+=======
+                  <th>Dono</th>
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                   <th>Empresa</th>
                   <th>Imagem</th>
                   <th>Nome</th>
@@ -28,6 +35,7 @@
               <tbody>
                 {% for produto in produtos %}
                 <tr>
+<<<<<<< HEAD
                   <td>{{ produto.empresa.responsavel.get_username|default:"-" }}</td>
                   
                   <td>{{ produto.empresa.nome|default:"-" }}</td>
@@ -36,6 +44,18 @@
                     <img src="data:image/jpeg;base64,{{ produto.get_image_base64 }}" 
                          alt="{{ produto.nome }}" 
                          style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;">
+=======
+                  <td>{{ produto.empresa.usuario.get_full_name|default:"-" }}</td>
+                  
+                  <td>{{ produto.empresa.nome_loja|default:"-" }}</td>
+
+                  <td>
+                    {% if produto.imagem %}
+                      <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;">
+                    {% else %}
+                      <span class="text-muted">Sem Imagem</span>
+                    {% endif %}
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                   </td>
                   
                   <td>{{ produto.nome }}</td>

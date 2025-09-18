@@ -8,11 +8,14 @@
         <div class="card-body">
           <h4 class="card-title">Gerenciamento de Catálogos</h4>
           <p class="card-description">Lista de todos os catálogos do sistema.</p>
+<<<<<<< HEAD
           {% if messages %}
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
       {% endif %}
+=======
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 
           <div class="table-responsive">
             <table class="table table-hover">
@@ -28,12 +31,27 @@
               <tbody>
                 {% for catalogo in catalogos %}
                 <tr>
+<<<<<<< HEAD
                   <td>{{ catalogo.empresa.responsavel.get_full_name|default:catalogo.empresa.responsavel.get_username }}</td>
                   <td>{{ catalogo.empresa.nome|default:"-" }}</td>
                   <td>
                     <img class="img-thumbnail" src="data:image/jpeg;base64,{{ catalogo.get_image_base64 }}" alt="{{ catalogo.nome }}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px;">
                   </td>
                   <td>{{ catalogo.nome }}</td>
+=======
+                  <td>{{ catalogo.empresa.usuario.get_full_name|default:catalogo.empresa.usuario.username }}</td>
+                  <td>{{ catalogo.empresa.nome_loja|default:"-" }}</td>
+                  <td>
+                    {% if catalogo.thumbnail %}
+                      <img src="{{ catalogo.thumbnail.url }}" alt="{{ catalogo.título }}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;">
+                    {% else %}
+                      <div class="d-flex justify-content-center align-items-center" style="width: 60px; height: 60px; background-color: #333; border-radius: 8px;">
+                          <i class="mdi mdi-image-area" style="font-size: 24px;"></i>
+                      </div>
+                    {% endif %}
+                  </td>
+                  <td>{{ catalogo.título }}</td>
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                   <td>
                     <a href="{% url 'catalogo:detalhe_catalogo' catalogo.pk %}" class="btn btn-info btn-sm" title="Visualizar Detalhes">
                         <i class="mdi mdi-eye"></i>

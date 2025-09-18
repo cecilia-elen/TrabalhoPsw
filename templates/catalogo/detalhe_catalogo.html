@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<<<<<<< HEAD
 <section class="page-section bg-light" id="portfolio">
     {% if messages %}
         {% for message in messages %}
@@ -17,6 +18,20 @@
                 </a>
             </h4>
             <h3 class="section-subheading text-muted">{{ catalogo.descricao|default:"Conheça os produtos deste catálogo." }}</h3>
+=======
+
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">{{ catalogo.título }}</h2>
+
+            <h4 class="section-subheading">
+                <a href="{% url 'empresa:perfil_empresa' catalogo.empresa.pk %}" class="link-dark text-decoration-none">
+                    Por: {{ catalogo.empresa.nome_loja }}
+                </a>
+            </h4>
+            <h3 class="section-subheading text-muted">{{ catalogo.descrição|default:"Conheça os produtos deste catálogo." }}</h3>
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
         </div>
         <div class="row">
 
@@ -40,10 +55,17 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
+<<<<<<< HEAD
                         {% if cp.produto.IMG %}
                             <img class="img-fluid product-image-grid" src="data:image/jpeg;base64,{{ cp.produto.get_image_base64 }}" alt="{{ cp.produto.nome }}" />
                         {% else %}
                              <img class="img-fluid product-image-grid" src="{% static 'images/placeholder.png' %}" alt="Sem imagem" />
+=======
+                        {% if cp.produto.imagem %}
+                            <img class="img-fluid" src="{{ cp.produto.imagem.url }}" alt="{{ cp.produto.nome }}" />
+                        {% else %}
+                             <img class="img-fluid" src="{% static 'images/placeholder.png' %}" alt="Sem imagem" />
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                         {% endif %}
                     </a>
                     <div class="portfolio-caption">
@@ -61,7 +83,11 @@
             {% empty %}
                 {% if not is_owner %}
                 <div class="col-12 text-center">
+<<<<<<< HEAD
                     <p class="text-muted fs-4 mt-5">Este catálogo ainda não possui produtos.</p>
+=======
+                    <p class="text-muted fs-4 mt-5">Este catálogo ainda não possui produtos. 썰</p>
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                 </div>
                 {% endif %}
             {% endfor %}
@@ -69,7 +95,11 @@
         </div>
     </div>
 </section>
+<<<<<<< HEAD
 <!-- Parte que quando clica no produto detalha-->
+=======
+
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 {% for cp in catalogo_produtos %}
 <div class="portfolio-modal modal fade" id="produtoModal{{ cp.produto.pk }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -80,17 +110,28 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <h2 class="text-uppercase">{{ cp.produto.nome }}</h2>
+<<<<<<< HEAD
                             <p class="item-intro text-muted">{{ catalogo.empresa.nome }}</p>
                             
                             {% if cp.produto.IMG %}
                                 <img class="img-fluid product-image-modal" src="data:image/jpeg;base64,{{ cp.produto.get_image_base64 }}" alt="{{ cp.produto.nome }}" />
+=======
+                            <p class="item-intro text-muted">{{ catalogo.empresa.nome_loja }}</p>
+                            
+                            {% if cp.produto.imagem %}
+                                <img class="img-fluid d-block mx-auto" src="{{ cp.produto.imagem.url }}" alt="{{ cp.produto.nome }}" />
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                             {% endif %}
                             
                             <p class="mt-4">{{ cp.produto.descricao|default:"Produto sem descrição detalhada." }}</p>
                             
                             <ul class="list-inline">
                                 <li>
+<<<<<<< HEAD
                                     <strong>Preço:</strong>
+=======
+                                    <strong>Preço neste catálogo:</strong>
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                                     R$ {{ cp.preco_final|floatformat:2 }}
                                 </li>
                                 <li>
@@ -119,13 +160,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
+<<<<<<< HEAD
         min-height: 295px; 
+=======
+        min-height: 295px; /* Altura ajustada para alinhar com os outros cards */
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
         background-color: #f8f9fa;
         position: relative;
         transition: all 0.2s ease-in-out;
     }
     .add-product-card:hover {
+<<<<<<< HEAD
         border-color: #0d6efd; 
+=======
+        border-color: #0d6efd; /* Cor primária do Bootstrap */
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
         background-color: #e9ecef;
     }
     .add-product-content {
@@ -135,6 +184,7 @@
     .portfolio-item .owner-actions {
         padding-bottom: 1.5rem;
     }
+<<<<<<< HEAD
 
 
     .product-image-grid {
@@ -151,6 +201,8 @@
         object-fit: contain; 
     }
 
+=======
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 </style>
 
 {% endblock %}

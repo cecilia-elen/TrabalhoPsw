@@ -10,5 +10,9 @@ urlpatterns = [
     #pega o id para excluir a categoria
     path('<int:pk>/excluir/', views.excluir_categoria, name='excluir_categoria'),
 
+<<<<<<< HEAD
 ]
 #
+=======
+]
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08

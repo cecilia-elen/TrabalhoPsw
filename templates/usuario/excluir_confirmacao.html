@@ -18,7 +18,11 @@
                     <form method="post" class="mt-4">
                         {% csrf_token %}
                         
+<<<<<<< HEAD
                         <button type="submit" class="btn btn-danger mr-2">Sim, tenho certeza, excluir a conta</button>
+=======
+                        <button type="submit" class="btn btn-danger mr-2">Sim, tenho certeza, excluir minha conta</button>
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
                         
                        {% if perms.usuario.view_usuario %} <!-- Se a pessoa tiver permissao, aparece um redirecionamento pro adm, senao, vai o normal mesmo-->
         <a href="{% url 'usuario:listar_usuarios' %}" class="btn btn-dark">Cancelar</a>

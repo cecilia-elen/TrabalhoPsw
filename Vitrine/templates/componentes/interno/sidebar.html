@@ -1,0 +1,73 @@
+ {% load static %}
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div
+          class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+          <a class="sidebar-brand brand-logo"
+            href="{% url 'pagina-inicial' %}"><img
+              src="{% static 'perfil/template/assets/images/logo.png' %}"
+              alt="logo" /></a>
+          <a class="sidebar-brand brand-logo-mini"
+            href="{% url 'pagina-inicial' %}"><img
+              src="{% static 'perfil/template/assets/images/logo-mini.svg' %}"
+              alt="logo" /></a>
+        </div>
+        <ul class="nav">
+          <li class="nav-item profile">
+          </li>
+
+          <li class="nav-item nav-category">
+            <span class="nav-link">Navegação</span>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link"
+              href="{% url 'usuario:perfil' %}">
+              <span class="menu-icon">
+                <i class="mdi mdi-contacts"></i>
+              </span>
+              <span class="menu-title">Meu Perfil</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link"
+              href="{% url 'usuario:perfil' %}">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+              <span class="menu-title">Meus Catálogos</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link"
+              href="{% url 'produto:gerenciar_produtos' %}">
+              <span class="menu-icon">
+                <i class="mdi mdi-cart-plus"></i>
+              </span>
+              <span class="menu-title">Produtos Registrados</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="{% url 'usuario:perfil' %}"
+              aria-expanded="false" aria-controls="auth">
+              <span class="menu-icon">
+                <i class="mdi mdi-wrench"></i>
+              </span>
+              <span class="menu-title">Configurações</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link"
+                    href="{% url 'usuario:editar_perfil' %}">
+                    Personalizar Perfil </a></li>
+                <li class="nav-item"> <a class="nav-link"
+                    href="{% url 'usuario:visualizar_usuario' %}">
+                    Dados da Conta</a></li>
+                <li class="nav-item"> <a class="nav-link"
+                    href="{% url 'usuario:excluir_conta' %}"> Excluir
+                    Perfil</a></li>
+                    <li class="nav-item"> <a class="nav-link"
+                    href="{% url 'categoria:gerenciar_categorias' %}">Gerenciar Categorias</a></li>
+              </ul>
+            </div>
+          </li>
+        </nav>

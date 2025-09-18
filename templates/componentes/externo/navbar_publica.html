@@ -2,7 +2,11 @@
  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
         
+<<<<<<< HEAD
         <a class="navbar-brand" href="{% url 'pagina-inicial' %}"><img src="{% static 'página_inicial/assets/img/navbar-logo.png' %}" alt="..." /></a>
+=======
+        <a class="navbar-brand" href="#page-top"><img src="{% static 'página_inicial/assets/img/navbar-logo.png' %}" alt="..." /></a>
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -14,6 +18,7 @@
                 <li class="nav-item"><a class="nav-link" href="#services">Tutorial</a></li>
                 <li class="nav-item"><a class="nav-link" href="#portfolio">Ofertas</a></li>
                 <li class="nav-item"><a class="nav-link" href="#team">Equipe</a></li>
+<<<<<<< HEAD
                 <li class="nav-item"><a class="nav-link" href="#Sobre">Sobre</a></li>
       </ul>
 
@@ -21,6 +26,15 @@
     <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="q">
     <button class="btn btn-outline-light" type="submit">❮</button>
 </form>
+=======
+                <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
+      </ul>
+
+      <form class="d-flex ms-lg-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+          <button class="btn btn-outline-light" type="submit"> ❮</button>
+      </form>
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 
       <!--  Nav para quando o usuário estiver logado no sistema-->
 
@@ -29,6 +43,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           
+<<<<<<< HEAD
           {% if user.usuario.get_image_base64 %}
                 <img src="data:image/jpeg;base64,{{ user.usuario.get_image_base64 }}"
                      class="rounded-circle"
@@ -36,6 +51,13 @@
             {% else %}
                 <i class="fas fa-user-circle fa-2x" style="margin-right: 10px;"></i>
             {% endif %}
+=======
+          {% if user.foto_perfil %}
+            <img src="{{ user.foto_perfil.url }}" alt="Foto de Perfil" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+          {% else %}
+            <i class="fas fa-user-circle fa-2x" style="margin-right: 10px;"></i>
+          {% endif %}
+>>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
           
           {{ user.get_full_name|default:user.username }}
         </a>

@@ -1,0 +1,75 @@
+{% extends 'componentes/interno/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">Gerenciar Produtos (Inventário)</h3>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-8 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Seus Produtos Cadastrados</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Imagem</th>
+                                    <th>Nome</th>
+                                    <th>Categoria</th>
+                                    <th>Preço Padrão</th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                {% for produto in produtos %}
+                                <tr>
+                                    <td>
+                                        {% if produto.imagem %}
+                                            <img src="{{ produto.imagem.url }}" class="rounded" style="width: 50px; height: 50px; object-fit: cover;" alt="{{ produto.nome }}">
+                                        {% else %}
+                                            <i class="mdi mdi-camera-off"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ produto.nome }}</td>
+                                    <td>{{ produto.categoria.nome|default:"-" }}</td>
+                                    <td>R$ {{ produto.preco }}</td>
+                                    </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="5">Nenhum produto criado ainda.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Adicionar Novo Produto</h4>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary">Salvar Produto</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
