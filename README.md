@@ -1,4 +1,4 @@
-#Vitrine
+# Vitrine
 
 Desenvolvedores do Sistema:
 - Cecília Elen Dourado Teixeira (20221GBI23I0021);
@@ -9,10 +9,11 @@ Turma: 3BII
 (TA’s 2024)
 
 #O que é? Qual é seu objetivo?
+
 Um sistema de catálogo virtual projetado para otimizar as vendas online de pequenos e médios comércios, facilitando a exposição de produtos para clientes na internet.
 Muitos comércios, especialmente os de menor porte, ainda não possuem um catálogo virtual. Isso cria um desafio para os vendedores, que acabam tendo dificuldades para mostrar todas as mercadorias disponíveis para a clientela online. Esse processo manual pode gerar desentendimentos, atrasos na comunicação e, consequentemente, a perda de vendas.
 
-#Como Executar Localmente
+# Como Executar Localmente
 1. Pré-requisitos
 Antes de começar, você precisa ter dois programas instalados.
 Python 3.8 (ou superior): A linguagem em que o projeto foi construído.
@@ -38,17 +39,18 @@ cd TrabalhoPsw
 3. Crie e Ative o Ambiente Virtual
 Isso cria uma "caixa" segura para as dependências do projeto.
 
-# Cria o ambiente 
+
+- Cria o ambiente
 
  python -m venv venv
  
-# Ativa o ambiente (use o comando para o seu sistema)
+- Ativa o ambiente (use o comando para o seu sistema)
 
-# No Windows:
+No Windows:
 
 .\venv\Scripts\activate
 
-# No macOS ou Linux:
+No macOS ou Linux:
 
 source venv/bin/activate
 
@@ -68,7 +70,7 @@ python manage.py runserver
 Após o último comando, copie o link que aparece no terminal 
 
 
-#Perfis pré-feitos no sistema (usernames):
+# Perfis pré-feitos no sistema (usernames):
 
 administrador (com permissões especiais de gerenciar o sistema);
 Ceci (dona de Atelier)
