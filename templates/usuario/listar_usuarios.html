@@ -8,26 +8,18 @@
     <div class="card-body">
       <h4 class="card-title">Gerenciamento de Usuários</h4>
       <p class="card-description">Lista de todos os usuários do sistema.</p>
-<<<<<<< HEAD
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
       {% endif %}
-=======
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
 
       <div class="table-responsive">
         <table class="table">
           <thead>
             <tr>
-<<<<<<< HEAD
               <th>Nome Completo</th>
               <th>Username</th>
-=======
-              
-              <th>Nome Completo</th>
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
               <th>Email</th>
               <th>CPF</th>
               <th>Ações</th>
@@ -36,7 +28,6 @@
           <tbody>
             {% for usuario_alvo in usuarios %}
             <tr>
-<<<<<<< HEAD
               <td>
                 <a href="{% url 'usuario:perfil_publico' pk=usuario_alvo.pk %}">
                     {{ usuario_alvo.get_full_name|default:"Nome não cadastrado" }}
@@ -52,18 +43,6 @@
             </tr>
             {% endfor %}
             <a href= "{% url 'usuario:criar_usuario_admin' %}" class="btn btn-primary mt-3">Criar Usuário</a>
-=======
-              <td>{{ usuario_alvo.get_full_name }}</td>
-              <td>{{ usuario_alvo.email }}</td>
-              <td>{{ usuario_alvo.CPF}}</td>
-              <td>
-                <a href="{% url 'usuario:alterar_usuario_admin' usuario_alvo.pk %}" class="btn btn-warning btn-sm">Alterar</a>
-                <a href="{% url 'usuario:excluir_confirmacao' usuario_alvo.pk %}" class="btn btn-danger btn-sm">Excluir</a>
-              </td>
-            </tr>
-            {% endfor %}
-            <a href= "{% url 'usuario:criar_usuario_admin' %}" class="btn btn-primary">Criar</a>
->>>>>>> 8750437900de8beadd7384be3adc93d797d65d08
           </tbody>
         </table>
       </div>
