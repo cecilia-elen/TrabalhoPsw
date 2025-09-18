@@ -38,7 +38,7 @@ Este comando baixa uma cópia do projeto para o seu computador.
 
 2. Entre na Pasta do Projeto (Passo Essencial!)
 Você precisa entrar na pasta que acabou de ser criada antes de continuar.
-cd TrabalhoPsw
+cd TrabalhoPsw-master
 
 
 3. Crie e Ative o Ambiente Virtual
