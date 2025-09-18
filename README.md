@@ -73,9 +73,13 @@ Após o último comando, copie o link que aparece no terminal
 # Perfis pré-feitos no sistema (usernames):
 
 administrador (com permissões especiais de gerenciar o sistema);
+
 Ceci (dona de Atelier)
+
 Natan (dono de uma concessionária)
+
 Ítalo (dono de uma loja de eletrônicos)
 
-IMPORTANTE A senha é igual para todos os usuários povoados: projetopsw
+
+#IMPORTANTE A senha é igual para todos os usuários povoados: projetopsw
 
